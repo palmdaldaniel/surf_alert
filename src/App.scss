@@ -1,7 +1,7 @@
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
 
 * {
   box-sizing: border-box;
@@ -12,4 +12,20 @@
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.skeleton-wrapper-content {
+  @media (min-width: "900px") {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  &-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &-text:last-child {
+    grid-row: 2;
+  }
 }

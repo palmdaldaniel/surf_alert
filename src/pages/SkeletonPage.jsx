@@ -3,6 +3,19 @@ import Skeleton from "@mui/material/Skeleton";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
+const skeletonItems = [
+  {
+    variant: "rectangular",
+    width: "50%",
+    height: 200,
+  },
+  {
+    variant: "rectangular",
+    width: "80%",
+    height: 30,
+  },
+];
+
 const SkeletonPage = () => {
   return (
     <>
@@ -13,7 +26,7 @@ const SkeletonPage = () => {
         height={60}
         sx={{ marginBottom: "10px" }}
       />
-      <Container maxWidth="md">
+      <Container className="skeleton-wrapper" maxWidth="lg">
         <Skeleton
           animation="wave"
           sx={{ marginBottom: "10px" }}
@@ -21,87 +34,70 @@ const SkeletonPage = () => {
           width="100%"
           height={200}
         />
-
-        <Box sx={{ display: "flex",  marginBottom: "5px" }}>
+        <div className="skeleton-wrapper-content">
           <Skeleton
             animation="wave"
-   
             variant="rectangular"
-            width="50%"
+            width="100%"
             height={200}
+            sx={{ marginBottom: "10px",  display: { xs: "none", md: "block" }, }}
+            
           />
-          <Box
-            sx={{
-              flex: "1",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "end",
-            }}
-          >
+          <div className="skeleton-wrapper-content-text">
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
               variant="rectangular"
-              width="80%"
+              width="100%"
               height={30}
             />
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
               variant="rectangular"
-              width="80%"
+              width="100%"
               height={30}
             />
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
               variant="rectangular"
-              width="80%"
+              width="100%"
               height={30}
             />
-          </Box>
-        </Box>
-        <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
+          </div>
           <Skeleton
             animation="wave"
+            variant="rectangular"
+            width="100%"
+            height={200}
             sx={{ marginBottom: "10px" }}
-            variant="rectangular"
-            width="50%"
-            height={200}
-          />
-          <Box
-            sx={{
-              flex: "1",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "start",
-            }}
-          >
+          />  
+           <div className="skeleton-wrapper-content-text">
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
               variant="rectangular"
-              width="80%"
+              width="100%"
               height={30}
             />
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
               variant="rectangular"
-              width="80%"
+              width="100%"
               height={30}
             />
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
               variant="rectangular"
-              width="80%"
+              width="100%"
               height={30}
             />
-          </Box>
-        </Box>
+          </div>
+            
+        </div>
       </Container>
     </>
   );

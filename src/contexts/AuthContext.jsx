@@ -8,7 +8,6 @@ import {
 } from "firebase/auth";
 
 import { auth } from "../firebase";
-import Typography  from "@mui/material/Typography";
 import SkeletonPage from "../pages/SkeletonPage";
 
 const AuthContext = createContext();

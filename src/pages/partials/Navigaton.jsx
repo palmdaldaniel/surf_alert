@@ -41,6 +41,7 @@ const ResponsiveAppBar = () => {
         <Toolbar disableGutters>
           {/* Navigation for hamburger menu  */}
           <Box
+          className="navigation-icon"
             sx={{
               flexGrow: 1,
               display: { xs: "flex", md: "none" },

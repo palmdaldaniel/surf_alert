@@ -31,6 +31,7 @@ a {
 }
 
 .navigation-icon {
-  -webkit-appearance: none;
-  -moz-appearance: none
+  -webkit-box-pack: end;
+    -ms-flex-pack: end;
+        justify-content: end;
 }

@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Navigation from "./pages/partials/Navigaton";
 import LogoutPage from "./pages/LogoutPage";
+import SpotsPage from "./pages/SpotsPage";
 
 //components
 import IsProtected from "./components/IsProtected";
@@ -27,7 +28,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/logout" element={<LogoutPage />} />
+        <Route path="/spots" element={<SpotsPage />} />
+        {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
     </div>
   );

@@ -1,9 +1,8 @@
 import axios from "axios";
 
-//axios.defaults.baseURL = 'api.openweathermap.org/'
+axios.defaults.baseURL = "http://api.openweathermap.org";
 
 const apiKey = "cb61efeb4972c2a180bb7178dfc31903";
-const url = `api.openweathermap.org/data/2.5/weather?q=ystad&appid=${apiKey}&units=metric`;
 
 const get = async (endpoint) => {
   const result = await axios.get(endpoint);
@@ -11,11 +10,25 @@ const get = async (endpoint) => {
 };
 
 // harcoded with kåseberga for now
-export const getLocationWeatherData = async () => {
+export const getLocationWeatherData = async (coordinates = null) => {
+  if (!coordinates) return;
+
+  const { lat, lon } = coordinates;
+
   const result = await get(
-    "http://api.openweathermap.org/data/2.5/weather?lat=55.3870958&lon=14.0656814&appid=cb61efeb4972c2a180bb7178dfc31903"
+    `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
   );
-  console.log(result.data);
+  return result;
+};
+
+export const getCoordinates = async (location) => {
+  if (!location) return;
+
+  const result = await get(
+    `/geo/1.0/direct?q=${location},SE&limit=1&appid=${apiKey}`
+  );
+
+  return result.data[0];
 };
 
 export const getSeaTemperature = async () => {};

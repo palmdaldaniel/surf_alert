@@ -39,9 +39,9 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Navigation for hamburger menu  */}
+          {/* Navigation for hamburger menu start */}
           <Box
-          className="navigation-icon"
+            className="navigation-icon"
             sx={{
               flexGrow: 1,
               display: { xs: "flex", md: "none" },
@@ -80,7 +80,7 @@ const ResponsiveAppBar = () => {
 
           {/* Navigation for hamburger menu end */}
 
-          {/* Navigation for normal menu  */}
+          {/* Navigation for normal menu start */}
           <Box
             sx={{
               flexGrow: 1,

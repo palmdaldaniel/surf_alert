@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import useLocationWeather from "../hooks/useLocationWeather";
+
+//mui
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+
+//hooks
+import useLocationWeather from "../hooks/useLocationWeather";
+
+//components
 import SearchForm from "../components/SearchForm";
+import SpotsTable from "../components/SpotsTable";
 
 const SpotPage = () => {
   const [location, setLocation] = useState(null);
@@ -16,11 +23,10 @@ const SpotPage = () => {
   return (
     <Container
       sx={{
-        textAlign: "center",
         marginTop: "2em",
       }}
     >
-      <Typography variant="h1" sx={{ fontSize: "2em" }}>
+      <Typography variant="h3" sx={{ fontSize: "2em", marginBottom: "0.5em" }}>
         Search for a spot or take a look at the ones below
       </Typography>
 
@@ -28,6 +34,11 @@ const SpotPage = () => {
         isLoading={coordinates.isLoading || weatherData.isLoading}
         onSubmitClick={onSubmitClick}
       />
+
+      <Typography variant="h5" sx={{ margin: "0.5em 0" }}>
+        Favorites:
+      </Typography>
+      <SpotsTable />
     </Container>
   );
 };

@@ -38,7 +38,14 @@ function App() {
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/spots" element={<SpotsPage />} />
+        <Route
+          path="/spots"
+          element={
+            <IsProtected redirectTo="/login">
+              <SpotsPage />
+            </IsProtected>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

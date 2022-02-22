@@ -49,8 +49,8 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={values}>
-       {isLoading && <SkeletonPage />}
-       {!isLoading && children}
+      {isLoading && <SkeletonPage />}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };

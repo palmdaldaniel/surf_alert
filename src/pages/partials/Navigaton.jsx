@@ -7,22 +7,16 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-
 import Button from "@mui/material/Button";
-
 import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 
-const isLoggedIn = true;
-
-const pages = [
-  { page: "Page 1", path: "/" },
-  { page: "Page 2", path: "/" },
-  { page: isLoggedIn ? "Logout" : "Login", path: "/profile" },
-];
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const ResponsiveAppBar = () => {
-  const [state, setState] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { user } = useAuthContext();
 
   const toggleDrawer = (event) => {
     if (
@@ -32,7 +26,7 @@ const ResponsiveAppBar = () => {
       return;
     }
 
-    setState(!state);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -63,18 +57,38 @@ const ResponsiveAppBar = () => {
                 display: { md: "none" },
               }}
               anchor={"right"}
-              open={state}
+              open={isOpen}
               onClose={toggleDrawer}
             >
-              {pages.map((page, i) => (
-                <Box key={i} onClick={toggleDrawer} sx={{ width: 250 }}>
+              {user && (
+                <Box onClick={toggleDrawer} sx={{ width: 250 }}>
                   <MenuItem>
-                    <Typography as={Link} to={page.path} textAlign="center">
-                      {page.page}
+                    <Typography as={Link} to="/spots" textAlign="center">
+                      Spots
                     </Typography>
                   </MenuItem>
                 </Box>
-              ))}
+              )}
+              {user && (
+                <Box onClick={toggleDrawer} sx={{ width: 250 }}>
+                  <MenuItem>
+                    <Typography as={Link} to="/profile" textAlign="center">
+                      Profile
+                    </Typography>
+                  </MenuItem>
+                </Box>
+              )}
+              <Box onClick={toggleDrawer} sx={{ width: 250 }}>
+                <MenuItem>
+                  <Typography
+                    as={Link}
+                    to={user ? "/logout" : "login"}
+                    textAlign="center"
+                  >
+                    {user ? "Logout" : "Login"}
+                  </Typography>
+                </MenuItem>
+              </Box>
             </Drawer>
           </Box>
 
@@ -88,11 +102,23 @@ const ResponsiveAppBar = () => {
               justifyContent: "end",
             }}
           >
-            {pages.map((page, i) => (
-              <Button key={i} sx={{ my: 2, color: "white", display: "block" }}>
-                <Link to={page.path}>{page.page}</Link>
+            {user && (
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                <Link to="/spots">Spots</Link>
               </Button>
-            ))}
+            )}
+
+            {user && (
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                <Link to="/profile">Profile</Link>
+              </Button>
+            )}
+
+            <Button sx={{ my: 2, color: "white", display: "block" }}>
+              <Link to={user ? "/logout" : "login"}>
+                {user ? "Logout" : "Login"}
+              </Link>
+            </Button>
           </Box>
           {/* Navigation for normal menu end */}
         </Toolbar>

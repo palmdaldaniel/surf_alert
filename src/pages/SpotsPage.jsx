@@ -20,6 +20,8 @@ const SpotPage = () => {
     setLocation(input);
   };
 
+  console.log(weatherData);
+
   return (
     <Container
       sx={{

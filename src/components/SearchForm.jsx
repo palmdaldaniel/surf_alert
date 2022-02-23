@@ -9,8 +9,6 @@ const SearchForm = ({ onSubmitClick, isLoading }) => {
     searchString: "",
   });
 
-  console.log(isLoading);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

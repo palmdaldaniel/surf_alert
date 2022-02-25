@@ -1,23 +1,26 @@
-//const direction = "0";
 const compassPoints = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 
 const getWindDirection = (degree) => {
-  const d_as_num = parseInt(degree);
+  if (!degree) return false;
 
+  const compass = getCompass(parseInt(degree));
+
+  return compass;
+};
+
+const getCompass = (deg) => {
   switch (true) {
-    case d_as_num <= 90:
+    case deg <= 90:
       return "N";
-    case d_as_num > 90 && d_as_num < 160:
+    case deg > 90 && deg < 160:
       return "E";
-    case d_as_num >= 160 && d_as_num < 200:
+    case deg >= 160 && deg < 200:
       return "S";
-    case d_as_num >= 200 && d_as_num < 270:
+    case deg >= 200 && deg < 270:
       return "SW";
     default:
-      return -1;
+      return false;
   }
 };
 
-const result = getWindDirection(160);
-
-result;
+export { getWindDirection };

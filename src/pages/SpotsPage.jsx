@@ -16,6 +16,8 @@ const SpotPage = () => {
 
   const { coordinates, weatherData } = useLocationWeather(location);
 
+  console.log(weatherData);
+
   const onSubmitClick = (input) => {
     setLocation(input);
   };
@@ -38,7 +40,7 @@ const SpotPage = () => {
       />
 
       <Typography variant="h5" sx={{ margin: "0.5em 0" }}>
-        Favorites:
+        Common spots
       </Typography>
       <SpotsTable />
     </Container>

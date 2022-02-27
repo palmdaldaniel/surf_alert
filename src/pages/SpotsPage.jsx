@@ -16,13 +16,9 @@ const SpotPage = () => {
 
   const { coordinates, weatherData } = useLocationWeather(location);
 
-  console.log(weatherData);
-
   const onSubmitClick = (input) => {
     setLocation(input);
   };
-
-  console.log(weatherData);
 
   return (
     <Container

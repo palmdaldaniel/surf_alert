@@ -4,11 +4,8 @@ const useForm = (initialValues) => {
   const [values, setValues] = useState(initialValues);
 
   const resetForm = () => {
-
-
-    setValues(initialValues)
-
-  }
+    setValues(initialValues);
+  };
 
   return [
     values,
@@ -18,7 +15,7 @@ const useForm = (initialValues) => {
         [e.target.name]: e.target.value,
       });
     },
-    resetForm
+    resetForm,
   ];
 };
 

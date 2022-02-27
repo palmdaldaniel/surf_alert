@@ -28,7 +28,7 @@ const SearchForm = ({ onSubmitClick, isLoading }) => {
         <TextField
           onChange={handleChange}
           value={values.searchString}
-          sx={{ flex: 1, margin: "10px 10px 10px 0" }}
+          sx={{ flex: 1, margin: "10px" }}
           id="filled-basic"
           name="searchString"
           label="Search for a location"

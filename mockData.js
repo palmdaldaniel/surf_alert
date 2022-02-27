@@ -189,3 +189,31 @@ const Varberg = {
   name: "Varberg",
   cod: 200,
 };
+
+const favorites = [
+  {
+    name: "kåseberga",
+    lon: 14.0657,
+    lat: 55.3871,
+  },
+  {
+    name: "mölle",
+    lon: 12.4983,
+    lat: 56.2827,
+  },
+  {
+    name: "torö",
+    lon: 17.8414,
+    lat: 58.8246,
+  },
+  {
+    name: "torö",
+    lon: 17.8414,
+    lat: 58.8246,
+  },
+  {
+    name: "varberg",
+    lon: 12.2503,
+    lat: 57.1057,
+  },
+];

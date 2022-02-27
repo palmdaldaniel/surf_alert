@@ -9,7 +9,6 @@ const get = async (endpoint) => {
   return result;
 };
 
-// harcoded with kåseberga for now
 export const getLocationWeatherData = async (coordinates = null) => {
   if (!coordinates) return;
 
@@ -18,7 +17,8 @@ export const getLocationWeatherData = async (coordinates = null) => {
   const result = await get(
     `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
   );
-  return result;
+
+  return result.data;
 };
 
 export const getCoordinates = async (location) => {
@@ -30,5 +30,3 @@ export const getCoordinates = async (location) => {
 
   return result.data[0];
 };
-
-export const getSeaTemperature = async () => {};

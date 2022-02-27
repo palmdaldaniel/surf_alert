@@ -6,20 +6,37 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Link as RouterLink } from "react-router-dom";
-import Link from "@mui/material/Link";
+import SpotTableRow from "./SpotTableRow.jsx";
 
-import { getWindDirection } from "../helpers/CalcWindDir.js";
-
-function createData(location, area, wind, direction, temp) {
-  return { location, area, wind, direction, temp };
-}
-
-const rows = [
-  createData("Kåseberga", "Scania", "10ms", "100", 3),
-  createData("Torö", "Stockholm", "5ms", "200", 10),
-  createData("Apelviken", "Göteborg", "15ms", "20", 4),
-  createData("Mölle", "Kullaberg", "2ms", "90", 8),
+const favorites = [
+  {
+    name: "kåseberga",
+    area: "scania",
+    lon: 14.0657,
+    lat: 55.3871,
+    waterTempStation: 2088,
+  },
+  {
+    name: "mölle",
+    area: "scania",
+    lon: 12.4983,
+    lat: 56.2827,
+    waterTempStation: 33084,
+  },
+  {
+    name: "torö",
+    area: "uppland",
+    lon: 17.8414,
+    lat: 58.8246,
+    waterTempStation: 2507,
+  },
+  {
+    name: "varberg",
+    area: "västra götaland",
+    lon: 12.2503,
+    lat: 57.1057,
+    waterTempStation: 33084,
+  },
 ];
 
 export default function BasicTable() {
@@ -36,25 +53,8 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => {
-            const compassPoint = getWindDirection(row.direction);
-
-            return (
-              <TableRow
-                key={row.location}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <Link component={RouterLink} to="/to-specific-spot">
-                    {row.location}
-                  </Link>
-                </TableCell>
-                <TableCell align="right">{row.area}</TableCell>
-                <TableCell align="right">{row.wind}</TableCell>
-                <TableCell align="right">{compassPoint}</TableCell>
-                <TableCell align="right">{row.temp}&#176;C</TableCell>
-              </TableRow>
-            );
+          {favorites.map((favorite, i) => {
+            return <SpotTableRow spot={favorite} key={i} />;
           })}
         </TableBody>
       </Table>

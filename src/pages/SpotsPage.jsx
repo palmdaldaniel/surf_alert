@@ -10,6 +10,7 @@ import useLocationWeather from "../hooks/useLocationWeather";
 //components
 import SearchForm from "../components/SearchForm";
 import SpotsTable from "../components/SpotsTable";
+import SpotsMap from "../components/SpotsMap";
 
 const SpotPage = () => {
   const [location, setLocation] = useState(null);
@@ -38,7 +39,8 @@ const SpotPage = () => {
       <Typography variant="h5" sx={{ margin: "0.5em 0" }}>
         Common spots
       </Typography>
-      <SpotsTable />
+      {/*  <SpotsTable /> */}
+      <SpotsMap />
     </Container>
   );
 };

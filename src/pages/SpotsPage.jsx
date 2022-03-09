@@ -39,8 +39,15 @@ const SpotPage = () => {
       <Typography variant="h5" sx={{ margin: "0.5em 0" }}>
         Common spots
       </Typography>
-      {/*  <SpotsTable /> */}
-      <SpotsMap />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <SpotsTable />
+        <SpotsMap />
+      </div>
     </Container>
   );
 };

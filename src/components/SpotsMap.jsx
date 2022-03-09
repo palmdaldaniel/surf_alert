@@ -10,25 +10,24 @@ const geoUrl =
   "https://raw.githubusercontent.com/palmdaldaniel/geo-map-of-sweden/main/gadm40_SWE.json";
 
 // coordinates order lon,lat
-
 const markers = [
   {
-    markerOffset: -15,
+    markerOffset: -20,
     name: "kåseberga",
     coordinates: [14.0657, 55.3871],
   },
   {
-    markerOffset: -15,
+    markerOffset: -20,
     name: "mölle",
     coordinates: [12.4983, 56.2827],
   },
   {
-    markerOffset: -15,
+    markerOffset: -20,
     name: "torö",
     coordinates: [17.8414, 58.8246],
   },
   {
-    markerOffset: -15,
+    markerOffset: -20,
     name: "varberg",
     coordinates: [12.2503, 57.1057],
   },
@@ -36,12 +35,12 @@ const markers = [
 
 const MapChart = () => {
   return (
-    <div>
+    <div style={{}}>
       <ComposableMap
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
-          rotate: [-20.0, -60.0, 0],
-          scale: 2000,
+          rotate: [-15.0, -58.0, 0],
+          scale: 5000,
         }}
       >
         <Geographies
@@ -63,6 +62,7 @@ const MapChart = () => {
               textAnchor="middle"
               y={markerOffset}
               style={{
+                fontSize: "25px",
                 fontFamily: "system-ui",
                 fill: "#5D5A6D",
               }}

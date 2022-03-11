@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import SpotTableRow from "./SpotTableRow.jsx";
+import LocationTableRow from "./LocationTableRow.jsx";
 
 const favorites = [
   {
@@ -54,7 +54,7 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
           {favorites.map((favorite, i) => {
-            return <SpotTableRow spot={favorite} key={i} />;
+            return <LocationTableRow spot={favorite} key={i} />;
           })}
         </TableBody>
       </Table>

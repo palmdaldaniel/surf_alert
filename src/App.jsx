@@ -7,8 +7,9 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Navigation from "./pages/partials/Navigaton";
 import LogoutPage from "./pages/LogoutPage";
-import SpotsPage from "./pages/SpotsPage";
+import LocationsPage from "./pages/LocationsPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import LocationPage from "./pages/LocationPage";
 
 //components
 import IsProtected from "./components/IsProtected";
@@ -39,10 +40,18 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
-          path="/spots"
+          path="/locations"
           element={
             <IsProtected redirectTo="/login">
-              <SpotsPage />
+              <LocationsPage />
+            </IsProtected>
+          }
+        />
+        <Route
+          path="/locations/:lon/:lat"
+          element={
+            <IsProtected redirectTo="/login">
+              <LocationPage />
             </IsProtected>
           }
         />

@@ -9,10 +9,10 @@ import useLocationWeather from "../hooks/useLocationWeather";
 
 //components
 import SearchForm from "../components/SearchForm";
-import SpotsTable from "../components/SpotsTable";
-import SpotsMap from "../components/SpotsMap";
+import LocationsTable from "../components/LocationsTable";
+import LocationsMap from "../components/LocationsMap";
 
-const SpotPage = () => {
+const LocationsPage = () => {
   const [location, setLocation] = useState(null);
 
   const { coordinates, weatherData } = useLocationWeather(location);
@@ -45,11 +45,11 @@ const SpotPage = () => {
           justifyContent: "center",
         }}
       >
-        <SpotsTable />
-        <SpotsMap />
+        <LocationsTable />
+        <LocationsMap />
       </div>
     </Container>
   );
 };
 
-export default SpotPage;
+export default LocationsPage;

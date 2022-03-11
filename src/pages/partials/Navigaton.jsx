@@ -63,8 +63,8 @@ const ResponsiveAppBar = () => {
               {user && (
                 <Box onClick={toggleDrawer} sx={{ width: 250 }}>
                   <MenuItem>
-                    <Typography as={Link} to="/spots" textAlign="center">
-                      Spots
+                    <Typography as={Link} to="/locations" textAlign="center">
+                      Locations
                     </Typography>
                   </MenuItem>
                 </Box>
@@ -104,7 +104,7 @@ const ResponsiveAppBar = () => {
           >
             {user && (
               <Button sx={{ my: 2, color: "white", display: "block" }}>
-                <Link to="/spots">Spots</Link>
+                <Link to="/locations">Locations</Link>
               </Button>
             )}
 

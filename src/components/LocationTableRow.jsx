@@ -10,7 +10,7 @@ import Link from "@mui/material/Link";
 import useWeatherData from "../hooks/useWeatherData.js";
 import useWaterTemp from "../hooks/useWaterTemp";
 
-const SpotTableRow = ({ spot }) => {
+const LocationTableRow = ({ spot }) => {
   const { lon, lat, name, area, waterTempStation } = spot;
 
   const weather = useWeatherData({ lon, lat });
@@ -23,7 +23,7 @@ const SpotTableRow = ({ spot }) => {
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       <TableCell component="th" scope="row">
-        <Link component={RouterLink} to="/to-specific-spot">
+        <Link component={RouterLink} to={`${lon}/${lat}`}>
           {name}
         </Link>
       </TableCell>
@@ -39,4 +39,4 @@ const SpotTableRow = ({ spot }) => {
   );
 };
 
-export default SpotTableRow;
+export default LocationTableRow;

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //mui
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 //hooks
 import useLocationWeather from "../hooks/useLocationWeather";
@@ -39,15 +40,15 @@ const LocationsPage = () => {
       <Typography variant="h5" sx={{ margin: "0.5em 0" }}>
         Common spots
       </Typography>
-      <div
-        style={{
-          display: "flex",
+      <Box
+        sx={{
+          display: { md: "flex" },
           justifyContent: "center",
         }}
       >
         <LocationsTable />
         <LocationsMap />
-      </div>
+      </Box>
     </Container>
   );
 };

@@ -41,7 +41,12 @@ const favorites = [
 
 export default function BasicTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      sx={{
+        marginBottom: "10px",
+      }}
+      component={Paper}
+    >
       <Table size="small" aria-label="simple table">
         <TableHead>
           <TableRow>

@@ -6,6 +6,7 @@ import {
   Marker,
 } from "react-simple-maps";
 
+import Box from "@mui/material/Box";
 const geoUrl =
   "https://raw.githubusercontent.com/palmdaldaniel/geo-map-of-sweden/main/gadm40_SWE.json";
 
@@ -35,7 +36,11 @@ const markers = [
 
 const MapChart = () => {
   return (
-    <div style={{}}>
+    <Box
+      sx={{
+        flex: "0.4",
+      }}
+    >
       <ComposableMap
         projection="geoAzimuthalEqualArea"
         projectionConfig={{
@@ -72,7 +77,7 @@ const MapChart = () => {
           </Marker>
         ))}
       </ComposableMap>
-    </div>
+    </Box>
   );
 };
 

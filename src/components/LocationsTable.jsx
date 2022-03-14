@@ -1,4 +1,3 @@
-import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -44,10 +43,11 @@ export default function BasicTable() {
     <TableContainer
       sx={{
         marginBottom: "10px",
+        flex: "0.6",
       }}
       component={Paper}
     >
-      <Table size="small" aria-label="simple table">
+      <Table size="medium" aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Location</TableCell>

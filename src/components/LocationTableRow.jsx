@@ -28,13 +28,17 @@ const LocationTableRow = ({ spot }) => {
         </Link>
       </TableCell>
       <TableCell align="right">{area}</TableCell>
-      <TableCell align="right">{weather?.data?.wind.speed}</TableCell>
+      <TableCell align="right">{weather?.data?.wind.speed} m/s</TableCell>
       <TableCell align="right">
         {getWindDirection(weather?.data?.wind.deg)}
       </TableCell>
-      <TableCell align="right">
-        {waterTemp?.data?.value[0]?.value}&#176;C
-      </TableCell>
+      {waterTemp.data ? (
+        <TableCell align="right">
+          {waterTemp?.data?.value[0]?.value}&#176;C
+        </TableCell>
+      ) : (
+        <TableCell align="right">No data</TableCell>
+      )}
     </TableRow>
   );
 };

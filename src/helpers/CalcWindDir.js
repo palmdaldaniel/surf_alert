@@ -1,7 +1,7 @@
 const compassPoints = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 
-const getWindDirection = (degree) => {
-  if (!degree) return false;
+const getWindDirection = (degree = null) => {
+  if (degree === null) return false;
 
   const compass = getCompass(degree);
 

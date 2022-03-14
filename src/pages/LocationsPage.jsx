@@ -12,6 +12,7 @@ import useLocationWeather from "../hooks/useLocationWeather";
 import SearchForm from "../components/SearchForm";
 import LocationsTable from "../components/LocationsTable";
 import LocationsMap from "../components/LocationsMap";
+import LocationList from "../components/LocationList";
 
 const LocationsPage = () => {
   const [location, setLocation] = useState(null);
@@ -37,6 +38,7 @@ const LocationsPage = () => {
         onSubmitClick={onSubmitClick}
       />
 
+      {weatherData.data && <LocationList {...weatherData} />}
       <Typography variant="h5" sx={{ margin: "0.5em 0" }}>
         Common spots
       </Typography>

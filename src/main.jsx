@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./App.scss";
 import App from "./App";
+import "leaflet/dist/leaflet.css"; // styles for leaf leat map
 
 import { BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./contexts/AuthContext";

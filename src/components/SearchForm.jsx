@@ -43,7 +43,7 @@ const SearchForm = ({ onSubmitClick, isLoading }) => {
         >
           Search
         </Button>
-        <Button variant="outlined" sx={{ margin: "10px" }}>
+        <Button variant="outlined" sx={{ margin: "10px 0 10px" }}>
           Reset
         </Button>
       </Box>

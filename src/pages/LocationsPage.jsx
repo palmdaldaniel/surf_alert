@@ -13,6 +13,7 @@ import SearchForm from "../components/SearchForm";
 import LocationsTable from "../components/LocationsTable";
 import LocationsMap from "../components/LocationsMap";
 import LocationList from "../components/LocationList";
+import LeafletMap from "../components/LeafletMap";
 
 const LocationsPage = () => {
   const [location, setLocation] = useState(null);
@@ -45,11 +46,11 @@ const LocationsPage = () => {
       <Box
         sx={{
           display: { md: "flex" },
-          justifyContent: "center",
+          justifyContent: "space-evenly",
         }}
       >
         <LocationsTable />
-        <LocationsMap />
+        <LeafletMap />
       </Box>
     </Container>
   );

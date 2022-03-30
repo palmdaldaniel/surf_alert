@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { mapboxConfig } from "../mapbox";
+import "leaflet/dist/images/marker-shadow.png";
 
 const LeafletMap = () => {
   const position = [55.505, 14.0657];

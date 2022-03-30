@@ -6,6 +6,7 @@ import { Icon } from "leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 
 import "leaflet/dist/leaflet.css"; // styles for leaf leat map
+import { favorites } from "../helpers/favoritesData";
 
 const LeafletMap = () => {
   const position = [55.505, 14.0657];
@@ -21,7 +22,7 @@ const LeafletMap = () => {
     >
       <MapContainer
         center={position}
-        zoom={5}
+        zoom={4}
         scrollWheelZoom={true}
         style={{
           height: "100%",
@@ -32,20 +33,28 @@ const LeafletMap = () => {
           attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
           url={`https://api.mapbox.com/styles/v1/${mapboxConfig.username}/${mapboxConfig.styleId}/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxConfig.token}`}
         />
-        <Marker
-          icon={
-            new Icon({
-              iconUrl: markerIconPng,
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-            })
-          }
-          position={position}
-        >
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+
+        {favorites.map((item, key) => {
+          const { lon, lat } = item;
+          return (
+            <div key={key}>
+              <Marker
+                icon={
+                  new Icon({
+                    iconUrl: markerIconPng,
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                  })
+                }
+                position={[lat, lon]}
+              >
+                <Popup>
+                  <p>{item.name}</p>
+                </Popup>
+              </Marker>
+            </div>
+          );
+        })}
       </MapContainer>
     </Box>
   );

@@ -2,6 +2,9 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { mapboxConfig } from "../mapbox";
+import { Icon } from "leaflet";
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+
 import "leaflet/dist/leaflet.css"; // styles for leaf leat map
 
 const LeafletMap = () => {
@@ -29,7 +32,16 @@ const LeafletMap = () => {
           attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
           url={`https://api.mapbox.com/styles/v1/${mapboxConfig.username}/${mapboxConfig.styleId}/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxConfig.token}`}
         />
-        <Marker position={position}>
+        <Marker
+          icon={
+            new Icon({
+              iconUrl: markerIconPng,
+              iconSize: [25, 41],
+              iconAnchor: [12, 41],
+            })
+          }
+          position={position}
+        >
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>

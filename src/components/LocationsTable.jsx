@@ -7,6 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import LocationTableRow from "./LocationTableRow.jsx";
 import { favorites } from "../helpers/favoritesData";
+
 export default function BasicTable() {
   return (
     <TableContainer

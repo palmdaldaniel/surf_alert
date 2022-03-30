@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 
 //components
 import LeafletMap from "../components/LeafletMap";
+import LocationsTable from "../components/LocationsTable";
 
 const LocationsPage = () => {
   return (
@@ -13,6 +14,7 @@ const LocationsPage = () => {
         marginTop: "2em",
       }}
     >
+      {/* <LocationsTable /> */}
       <LeafletMap />
     </Container>
   );

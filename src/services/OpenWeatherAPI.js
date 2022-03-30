@@ -12,10 +12,10 @@ const get = async (endpoint) => {
 export const getLocationWeatherData = async (coordinates = null) => {
   if (!coordinates) return;
 
-  const { lat, lon } = coordinates;
+  const { lat, lng } = coordinates;
 
   const result = await get(
-    `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
+    `/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`
   );
 
   return result.data;

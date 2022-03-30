@@ -9,6 +9,11 @@ import AuthContextProvider from "./contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faChevronUp);
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

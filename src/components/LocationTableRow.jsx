@@ -3,7 +3,7 @@ import React from "react";
 import TableCell from "@mui/material/TableCell";
 
 import TableRow from "@mui/material/TableRow";
-import { getWindDirection } from "../helpers/CalcWindDir.js";
+import { getWindDirection } from "../helpers/CalcWindDir.jsx";
 
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
@@ -30,7 +30,7 @@ const LocationTableRow = ({ spot }) => {
       <TableCell align="right">{area}</TableCell>
       <TableCell align="right">{weather?.data?.wind.speed} m/s</TableCell>
       <TableCell align="right">
-        {getWindDirection(weather?.data?.wind.deg)}
+        Wind direction {getWindDirection(weather?.data?.wind.deg)}
       </TableCell>
       {waterTemp.data ? (
         <TableCell align="right">

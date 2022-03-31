@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Popup } from "react-leaflet";
 import { mapboxConfig } from "../mapbox";
 import LocationMarker from "./LocationMarker";
 
-import "leaflet/dist/leaflet.css"; // styles for leaf leat map
+import "leaflet/dist/leaflet.css";
 
 const LeafletMap = () => {
   const [currentPosition, setCurrentPosition] = useState(null);

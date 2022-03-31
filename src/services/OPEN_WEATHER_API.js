@@ -1,32 +1,27 @@
-import axios from "axios";
+import { API_SERVICE } from "./API_SERVICE";
 
-axios.defaults.baseURL = "https://api.openweathermap.org";
+const apiKey = import.meta.env.VITE_OPEN_WEATHER_MAP;
 
-const apiKey = "cb61efeb4972c2a180bb7178dfc31903";
-
-const get = async (endpoint) => {
-  const result = await axios.get(endpoint);
-  return result;
-};
+const api = API_SERVICE("https://api.openweathermap.org");
 
 export const getLocationWeatherData = async (coordinates = null) => {
   if (!coordinates) return;
 
   const { lat, lng } = coordinates;
 
-  const result = await get(
+  const { data } = await api.get(
     `/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`
   );
 
-  return result.data;
+  return data;
 };
 
 export const getCoordinates = async (location) => {
   if (!location) return;
 
-  const result = await get(
+  const { data } = await api.get(
     `/geo/1.0/direct?q=${location},SE&limit=1&appid=${apiKey}`
   );
 
-  return result.data[0];
+  return data[0];
 };

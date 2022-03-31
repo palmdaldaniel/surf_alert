@@ -1,11 +1,13 @@
-import axios from "axios";
+import { API_SERVICE } from "./API_SERVICE";
+
+const api = API_SERVICE("https://opendata-download-ocobs.smhi.se/api/");
 
 export const getWaterTemp = async (stationId = null) => {
   if (!stationId) return;
-  console.log("running");
-  const result = await axios.get(
-    `https://opendata-download-ocobs.smhi.se/api/version/latest/parameter/5/station/${stationId}/period/latest-hour/data.json`
+
+  const { data } = await api.get(
+    `version/latest/parameter/5/station/${stationId}/period/latest-hour/data.json`
   );
 
-  return result.data;
+  return data;
 };

@@ -15,7 +15,7 @@ const LocationsPage = () => {
       }}
     >
       <Typography variant="h5">
-        Use the map to get condition on a specific location
+        Use the map to get conditions on a specific location in the baltics
       </Typography>
       <LeafletMap />
     </Container>

@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import {
   getLocationWeatherData,
   getCoordinates,
-} from "../services/OpenWeatherAPI";
+} from "../services/OPEN_WEATHER_API";
 const useLocationWeather = (location = null) => {
   const coordinates = useQuery(["location", location], () =>
     getCoordinates(location)

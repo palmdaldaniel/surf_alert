@@ -3,31 +3,12 @@ import { Icon } from "leaflet";
 import { useMapEvent, Marker, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import useCoordinates from "../hooks/useCoordinates";
-import { getWindDirection } from "../helpers/CalcWindDir";
+import { getWindDirection } from "../helpers";
 import { calcNearest } from "../helpers/CalcDistance";
 import useWaterTemp from "../hooks/useWaterTemp";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
-const stations = [
-  {
-    name: "LANDSORT NORRA",
-    lat: 58.7689,
-    lon: 17.8589,
-    stationId: 2507,
-  },
-  {
-    name: "onsala",
-    lat: 57.392,
-    lon: 11.919,
-    stationId: 33084,
-  },
-  {
-    name: "kungsholms fort",
-    lat: 56.1053,
-    lon: 15.5894,
-    stationId: 2088,
-  },
-];
+import { stations } from "../helpers/stations";
 
 const LocationMarker = ({ currentPosition }) => {
   const [position, setPosition] = useState(currentPosition);
@@ -53,6 +34,9 @@ const LocationMarker = ({ currentPosition }) => {
 
   const showWeatherData = (geo, water) => {
     let content;
+
+    if (geo.sys.country !== "SE")
+      return (content = <p>This service is only available in sweden</p>);
 
     content = (
       <>
@@ -86,11 +70,7 @@ const LocationMarker = ({ currentPosition }) => {
     >
       <Popup>
         {(weatherData.isLoading || temp.isLoading) && <p>Loading data</p>}
-        {weatherData?.data?.sys.country !== "SE" ? (
-          <p>This service is only available in sweden</p>
-        ) : (
-          showWeatherData(weatherData.data, temp.data)
-        )}
+        {weatherData.data && showWeatherData(weatherData.data, temp.data)}
       </Popup>
     </Marker>
   );

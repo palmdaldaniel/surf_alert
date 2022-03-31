@@ -1,39 +1,58 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import LocationTableRow from "./LocationTableRow.jsx";
+import Container from "@mui/material/Container";
+
+import Aside from "./Aside";
+
+import { stations } from "../helpers/stations";
+import { useEffect, useState } from "react";
+import { calcNearest } from "../helpers/CalcDistance";
+
 //import { favorites } from "../helpers/favoritesData";
 
+/** properties
+ * name
+ * sys { sunrise, sunset, country}
+ * visibilitiy
+ * weather[0] {description, icon, main}
+ * wind {speed, deg, gust}
+ * main { temp, feels_like}
+ */
+
+const tableHead = [
+  { name: "Location", position: "center" },
+  { name: "Sunrise", position: "center" },
+  { name: "Sunset", position: "center" },
+  { name: "Wind Speed", position: "center" },
+  { name: "Wind Direction", position: "center" },
+  { name: "Water Temp", position: "center" },
+  { name: "Temperature", position: "center" },
+];
+
 export default function BasicTable({ weatherData }) {
-  console.log(weatherData);
+  const { name, sys, wind, main, coord } = weatherData;
+  const [station, setStation] = useState(null);
+
+  useEffect(() => {
+    const { lat, lon: lng } = coord;
+    const position = {
+      lat,
+      lng,
+    };
+
+    const result = calcNearest(stations, position);
+
+    setStation(result.id);
+  }, []);
+
   return (
-    <TableContainer
+    <Container
       sx={{
-        marginRight: "10px",
-        flex: "1",
+        marginTop: "20px",
+        display: { sm: "flex" },
+        justifyContent: "center",
       }}
-      component={Paper}
     >
-      <Table size="medium" aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Location</TableCell>
-            <TableCell align="right">Area</TableCell>
-            <TableCell align="right">Wind</TableCell>
-            <TableCell align="right">Direction</TableCell>
-            <TableCell align="right">Water temp</TableCell>
-          </TableRow>
-        </TableHead>
-        {/*    <TableBody>
-          {favorites.map((favorite, i) => {
-            return <LocationTableRow spot={favorite} key={i} />;
-          })}
-        </TableBody> */}
-      </Table>
-    </TableContainer>
+      <img src="https://via.placeholder.com/400" />
+      <Aside weatherData={weatherData} stationId={station} />
+    </Container>
   );
 }

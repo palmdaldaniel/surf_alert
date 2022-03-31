@@ -8,12 +8,12 @@ const LocationPage = () => {
   const { lat, lon: lng } = useParams();
 
   const weatherData = useCoordinates({ lat, lng });
-  console.log(weatherData);
 
   return (
     <Container>
+      {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
-      <LocationTable {...weatherData} />
+      {weatherData.data && <LocationTable weatherData={weatherData.data} />}
     </Container>
   );
 };

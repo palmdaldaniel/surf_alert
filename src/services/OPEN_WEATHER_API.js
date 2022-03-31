@@ -10,7 +10,7 @@ export const getLocationWeatherData = async (coordinates = null) => {
   const { lat, lng } = coordinates;
 
   const { data } = await api.get(
-    `/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`
+    `/data/2.5/weather?units=metric&lat=${lat}&lon=${lng}&appid=${apiKey}`
   );
 
   return data;

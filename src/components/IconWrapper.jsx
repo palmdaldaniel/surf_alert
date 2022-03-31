@@ -5,13 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const IconWrapper = ({ iconName, rotation, children }) => {
   return (
     <div>
+      <span
+        style={{
+          marginRight: "5px",
+        }}
+      >
+        {children}
+      </span>
       <FontAwesomeIcon rotation={rotation} icon={iconName} />
-      {children}
     </div>
   );
 };
 IconWrapper.defaultProps = {
-  iconName: "chevron-up",
+  iconName: "arrow-up",
   rotation: 0,
 };
 

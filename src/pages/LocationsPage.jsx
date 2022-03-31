@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 //components
 import LeafletMap from "../components/LeafletMap";
-import LocationsTable from "../components/LocationsTable";
+import LocationsTable from "../components/LocationTable";
 
 const LocationsPage = () => {
   return (

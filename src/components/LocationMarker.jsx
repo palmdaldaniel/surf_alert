@@ -33,7 +33,7 @@ const LocationMarker = ({ currentPosition }) => {
   const [position, setPosition] = useState(currentPosition);
   const [station, setStation] = useState(null);
 
-  const waterTemp = useWaterTemp(station);
+  const temp = useWaterTemp(station);
 
   useEffect(() => {
     if (position) {
@@ -43,12 +43,35 @@ const LocationMarker = ({ currentPosition }) => {
   }, [position]);
 
   const weatherData = useCoordinates(position);
+  console.log(weatherData?.data?.sys.country);
 
   const map = useMapEvent({
     click(e) {
       setPosition(e.latlng);
     },
   });
+
+  const showWeatherData = (geo, water) => {
+    let content;
+
+    content = (
+      <>
+        <p>{geo.name}</p>
+        <p>Wind speed: {geo.wind.speed} m/s</p>
+        <p>Wind direction: {getWindDirection(geo.wind.deg)}</p>
+        <p>
+          {water.parameter.name} {water.parameter.key}
+          {water.parameter.unit}
+        </p>
+        <Link component={RouterLink} to={`${position.lng}/${position.lat}`}>
+          Find out more
+        </Link>
+        ;
+      </>
+    );
+
+    return content;
+  };
 
   return position === null ? null : (
     <Marker
@@ -62,23 +85,12 @@ const LocationMarker = ({ currentPosition }) => {
       position={position}
     >
       <Popup>
-        {weatherData.isLoading && <p>Loading weatherData</p>}
-        {weatherData.data && (
-          <>
-            <p>{weatherData.data.name}</p>
-            <p>Wind speed: {weatherData.data.wind.speed} m/s</p>
-            <p>Wind direction: {getWindDirection(weatherData.data.wind.deg)}</p>
-          </>
+        {(weatherData.isLoading || temp.isLoading) && <p>Loading data</p>}
+        {weatherData?.data?.sys.country !== "SE" ? (
+          <p>This service is only available in sweden</p>
+        ) : (
+          showWeatherData(weatherData.data, temp.data)
         )}
-        {waterTemp.data && (
-          <p>
-            {waterTemp.data.parameter.name} {waterTemp.data.parameter.key}
-            {waterTemp.data.parameter.unit}
-          </p>
-        )}
-        <Link component={RouterLink} to={`${position.lng}/${position.lat}`}>
-          Find out more
-        </Link>
       </Popup>
     </Marker>
   );

@@ -6,9 +6,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import LocationTableRow from "./LocationTableRow.jsx";
-import { favorites } from "../helpers/favoritesData";
+//import { favorites } from "../helpers/favoritesData";
 
-export default function BasicTable() {
+export default function BasicTable({ weatherData }) {
+  console.log(weatherData);
   return (
     <TableContainer
       sx={{
@@ -27,11 +28,11 @@ export default function BasicTable() {
             <TableCell align="right">Water temp</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        {/*    <TableBody>
           {favorites.map((favorite, i) => {
             return <LocationTableRow spot={favorite} key={i} />;
           })}
-        </TableBody>
+        </TableBody> */}
       </Table>
     </TableContainer>
   );

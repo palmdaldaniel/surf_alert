@@ -6,6 +6,8 @@ import useCoordinates from "../hooks/useCoordinates";
 import { getWindDirection } from "../helpers/CalcWindDir";
 import { calcNearest } from "../helpers/CalcDistance";
 import useWaterTemp from "../hooks/useWaterTemp";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@mui/material/Link";
 const stations = [
   {
     name: "LANDSORT NORRA",
@@ -27,10 +29,9 @@ const stations = [
   },
 ];
 
-const LocationMarker = () => {
-  const [position, setPosition] = useState(null);
+const LocationMarker = ({ currentPosition }) => {
+  const [position, setPosition] = useState(currentPosition);
   const [station, setStation] = useState(null);
-  console.log(station);
 
   const waterTemp = useWaterTemp(station);
 
@@ -75,6 +76,9 @@ const LocationMarker = () => {
             {waterTemp.data.parameter.unit}
           </p>
         )}
+        <Link component={RouterLink} to={`${position.lng}/${position.lat}`}>
+          Find out more
+        </Link>
       </Popup>
     </Marker>
   );

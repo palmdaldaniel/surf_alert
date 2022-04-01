@@ -293,4 +293,44 @@ const result = stations
     return prev.distance < curr.distance ? prev : curr;
   });
 
-result;
+const windData = [
+  {
+    dt: 1648807200,
+    wind_speed: 3.46,
+    wind_deg: 76,
+  },
+  {
+    dt: 1648893600,
+    wind_speed: 3.45,
+    wind_deg: 280,
+  },
+];
+
+const getDirection = (deg) => {
+  switch (true) {
+    case deg <= 90 || deg >= 300:
+      return "N";
+    case deg > 90 && deg < 160:
+      return "E";
+    case deg >= 160 && deg < 200:
+      return "S";
+    case deg >= 200 && deg < 300:
+      return "W";
+    case deg >= 300:
+      return "N";
+    default:
+      return false;
+  }
+};
+
+const parsedData = windData.map((item) => {
+  const options = { weekday: "short", month: "numeric", day: "numeric" };
+  const date = new Date(item.dt * 1000).toLocaleDateString([], options);
+
+  return {
+    day: `${date} | ${getDirection(item.wind_deg)}`,
+    windSpeed: item.wind_speed,
+  };
+});
+
+parsedData;

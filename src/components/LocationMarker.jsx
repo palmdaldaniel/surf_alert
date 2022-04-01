@@ -14,8 +14,6 @@ const LocationMarker = ({ currentPosition }) => {
   const [position, setPosition] = useState(currentPosition);
   const [coordUrl, setCoordUrl] = useState(currentPosition);
 
-  console.log(coordUrl);
-
   const [station, setStation] = useState(null);
 
   const temp = useWaterTemp(station);
@@ -74,7 +72,9 @@ const LocationMarker = ({ currentPosition }) => {
     >
       <Popup>
         {(weatherData.isLoading || temp.isLoading) && <p>Loading data</p>}
-        {weatherData.data && showWeatherData(weatherData.data, temp.data)}
+        {weatherData.data &&
+          temp.data &&
+          showWeatherData(weatherData.data, temp.data)}
       </Popup>
     </Marker>
   );

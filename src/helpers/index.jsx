@@ -64,4 +64,41 @@ const parseToCoordinates = ({ lat, lng }) => {
   };
 };
 
-export { getWindDirection, parseTime, parseToUrl, parseToCoordinates };
+const getDirection = (deg) => {
+  switch (true) {
+    case deg <= 90 || deg >= 300:
+      return "N";
+    case deg > 90 && deg < 160:
+      return "E";
+    case deg >= 160 && deg < 200:
+      return "S";
+    case deg >= 200 && deg < 300:
+      return "W";
+    case deg >= 300:
+      return "N";
+    default:
+      return false;
+  }
+};
+
+const parseForecast = (data = null) => {
+  if (!data) return;
+
+  return data.map((item) => {
+    const options = { weekday: "short" };
+    const date = new Date(item.dt * 1000).toLocaleDateString([], options);
+    return {
+      day: date,
+      windSpeed: item.wind_speed,
+    };
+  });
+};
+
+export {
+  getWindDirection,
+  parseTime,
+  parseToUrl,
+  parseToCoordinates,
+  getDirection,
+  parseForecast,
+};

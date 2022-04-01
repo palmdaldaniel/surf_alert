@@ -47,11 +47,8 @@ export default function BasicTable({ weatherData }) {
     <Container
       sx={{
         marginTop: "20px",
-        display: { sm: "flex" },
-        justifyContent: "center",
       }}
     >
-      <img src="https://via.placeholder.com/400" />
       <Aside weatherData={weatherData} stationId={station} />
     </Container>
   );

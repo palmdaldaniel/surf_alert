@@ -13,41 +13,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    name: "Day 1",
-    pv: 5,
-  },
-  {
-    name: "Day 2",
-    pv: 5.9,
-  },
-  {
-    name: "Day 3",
-    pv: 5,
-  },
-  {
-    name: "Day 4",
-    pv: 3,
-  },
-  {
-    name: "Day 5",
-    pv: 20,
-  },
-  {
-    name: "Day 6",
-    pv: 15,
-  },
-  {
-    name: "Day 7",
-    pv: 20,
-  },
-];
-
 const WeatherChart = ({ forecastData }) => {
   const [chartData, setChartData] = useState(null);
 
-  console.log(chartData);
   useEffect(() => {
     const parsedForecastData = parseForecast(forecastData);
 

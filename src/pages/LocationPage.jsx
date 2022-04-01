@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import WeatherChart from "../components/WeatherChart";
 import { parseToCoordinates } from "../helpers";
 import useForecast from "../hooks/useForecast";
+import Box from "@mui/material/Box";
 
 const LocationPage = () => {
   const { lat, lon: lng } = useParams();
@@ -28,7 +29,18 @@ const LocationPage = () => {
       {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
       {weatherData.data && <LocationTable weatherData={weatherData.data} />}
-      {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
+
+      <Box
+        sx={{
+          minWidth: "300px",
+
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <img src="http://via.placeholder.com/550x150" />
+        {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
+      </Box>
     </Container>
   );
 };

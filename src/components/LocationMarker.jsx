@@ -12,7 +12,7 @@ import { stations } from "../helpers/stations";
 
 const LocationMarker = ({ currentPosition }) => {
   const [position, setPosition] = useState(currentPosition);
-  const [coordUrl, setCoordUrl] = useState(null);
+  const [coordUrl, setCoordUrl] = useState(parseToUrl(currentPosition));
 
   const [station, setStation] = useState(null);
 
@@ -22,7 +22,6 @@ const LocationMarker = ({ currentPosition }) => {
     if (position) {
       const result = calcNearest(stations, position);
       setStation(result.id);
-      setCoordUrl(parseToUrl(currentPosition));
     }
   }, [position]);
 
@@ -31,6 +30,7 @@ const LocationMarker = ({ currentPosition }) => {
   useMapEvent({
     click(e) {
       setPosition(e.latlng);
+      setCoordUrl(parseToUrl(e.latlng));
     },
   });
 
@@ -49,10 +49,11 @@ const LocationMarker = ({ currentPosition }) => {
           {water.parameter.name} {water.parameter.key}
           {water.parameter.unit}
         </p>
-        <Link component={RouterLink} to={`${coordUrl.lng}/${coordUrl.lat}`}>
-          Find out more
-        </Link>
-        ;
+        {coordUrl && (
+          <Link component={RouterLink} to={`${coordUrl.lng}/${coordUrl.lat}`}>
+            Find out more
+          </Link>
+        )}
       </>
     );
 

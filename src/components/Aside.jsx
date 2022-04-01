@@ -7,13 +7,15 @@ import useWaterTemp from "../hooks/useWaterTemp";
 
 import { getWindDirection, parseTime } from "../helpers";
 
-export default function Aside({ weatherData, station }) {
+export default function Aside({ weatherData, stationId }) {
   const { name, sys, wind, main, coord } = weatherData;
 
-  const temp = useWaterTemp(station);
+  const temp = useWaterTemp(stationId);
+
+  console.log(temp);
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", display: "flex" }}>
       <ListItem
         sx={{
           paddingBottom: 0,
@@ -57,11 +59,20 @@ export default function Aside({ weatherData, station }) {
           paddingBottom: 0,
         }}
       >
-        <ListItemText
-          primary="Temperature"
-          secondary={`${main.temp} degrees celsius`}
-        />
+        <ListItemText primary="Air Temperature" secondary={`${main.temp}°C`} />
       </ListItem>
+      {temp.data && (
+        <ListItem
+          sx={{
+            paddingBottom: 0,
+          }}
+        >
+          <ListItemText
+            primary="Water Temperature"
+            secondary={`${temp.data.parameter.key}${temp.data.parameter.unit}`}
+          />
+        </ListItem>
+      )}
     </List>
   );
 }

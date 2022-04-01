@@ -324,8 +324,10 @@ const getDirection = (deg) => {
 };
 
 const parsedData = windData.map((item) => {
-  const options = { weekday: "short", month: "numeric", day: "numeric" };
+  const options = { month: "numeric", day: "numeric" };
   const date = new Date(item.dt * 1000).toLocaleDateString([], options);
+
+  date;
 
   return {
     day: `${date} | ${getDirection(item.wind_deg)}`,

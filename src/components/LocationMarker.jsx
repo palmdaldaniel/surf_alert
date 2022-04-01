@@ -12,7 +12,7 @@ import { stations } from "../helpers/stations";
 
 const LocationMarker = ({ currentPosition }) => {
   const [position, setPosition] = useState(currentPosition);
-  const [coordUrl, setCoordUrl] = useState(currentPosition);
+  const [coordUrl, setCoordUrl] = useState(null);
 
   const [station, setStation] = useState(null);
 
@@ -22,6 +22,7 @@ const LocationMarker = ({ currentPosition }) => {
     if (position) {
       const result = calcNearest(stations, position);
       setStation(result.id);
+      setCoordUrl(parseToUrl(currentPosition));
     }
   }, [position]);
 
@@ -30,7 +31,6 @@ const LocationMarker = ({ currentPosition }) => {
   useMapEvent({
     click(e) {
       setPosition(e.latlng);
-      setCoordUrl(parseToUrl(e.latlng));
     },
   });
 

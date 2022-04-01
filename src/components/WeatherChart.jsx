@@ -12,6 +12,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Box } from "@mui/material";
 
 const WeatherChart = ({ forecastData }) => {
   const [chartData, setChartData] = useState(null);
@@ -23,26 +24,16 @@ const WeatherChart = ({ forecastData }) => {
   }, []);
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         height: "300px",
-        width: "550px",
-        margin: "10px auto",
+        width: { xs: "300", sm: "500px" },
+        margin: "10px 0",
       }}
     >
       {chartData && (
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            width={500}
-            height={300}
-            data={chartData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
+          <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="day" />
             <YAxis domain={[0, 30]} />
@@ -52,7 +43,7 @@ const WeatherChart = ({ forecastData }) => {
           </BarChart>
         </ResponsiveContainer>
       )}
-    </div>
+    </Box>
   );
 };
 

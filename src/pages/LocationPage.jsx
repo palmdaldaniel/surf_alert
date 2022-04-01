@@ -35,6 +35,7 @@ const LocationPage = () => {
           minWidth: "300px",
 
           display: "flex",
+
           flexDirection: { xs: "column", md: "row" },
         }}
       >

@@ -15,7 +15,12 @@ export default function Aside({ weatherData, stationId }) {
   console.log(temp);
 
   return (
-    <List sx={{ width: "100%", display: "flex" }}>
+    <List
+      sx={{
+        display: { sm: "flex" },
+        justifyContent: "start",
+      }}
+    >
       <ListItem
         sx={{
           paddingBottom: 0,

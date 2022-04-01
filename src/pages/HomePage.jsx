@@ -4,9 +4,6 @@ import SkeletonPage from "./SkeletonPage";
 
 const HomePage = () => {
   const { user } = useAuthContext();
-  console.log(user);
-
- 
 
   return (
     <div>

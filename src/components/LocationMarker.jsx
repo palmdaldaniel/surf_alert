@@ -3,7 +3,7 @@ import { Icon } from "leaflet";
 import { useMapEvent, Marker, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import useCoordinates from "../hooks/useCoordinates";
-import { getWindDirection } from "../helpers";
+import { getWindDirection, parseToUrl } from "../helpers";
 import { calcNearest } from "../helpers/CalcDistance";
 import useWaterTemp from "../hooks/useWaterTemp";
 import { Link as RouterLink } from "react-router-dom";
@@ -12,6 +12,10 @@ import { stations } from "../helpers/stations";
 
 const LocationMarker = ({ currentPosition }) => {
   const [position, setPosition] = useState(currentPosition);
+  const [coordUrl, setCoordUrl] = useState(currentPosition);
+
+  console.log(coordUrl);
+
   const [station, setStation] = useState(null);
 
   const temp = useWaterTemp(station);
@@ -24,11 +28,11 @@ const LocationMarker = ({ currentPosition }) => {
   }, [position]);
 
   const weatherData = useCoordinates(position);
-  console.log(weatherData?.data?.sys.country);
 
-  const map = useMapEvent({
+  useMapEvent({
     click(e) {
       setPosition(e.latlng);
+      setCoordUrl(parseToUrl(e.latlng));
     },
   });
 
@@ -47,7 +51,7 @@ const LocationMarker = ({ currentPosition }) => {
           {water.parameter.name} {water.parameter.key}
           {water.parameter.unit}
         </p>
-        <Link component={RouterLink} to={`${position.lng}/${position.lat}`}>
+        <Link component={RouterLink} to={`${coordUrl.lng}/${coordUrl.lat}`}>
           Find out more
         </Link>
         ;

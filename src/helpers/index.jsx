@@ -50,4 +50,18 @@ const parseTime = (timeInUnix) => {
   return time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 };
 
-export { getWindDirection, parseTime };
+const parseToUrl = ({ lat, lng }) => {
+  return {
+    lat: lat.toString().replace(".", "&"),
+    lng: lng.toString().replace(".", "&"),
+  };
+};
+
+const parseToCoordinates = ({ lat, lng }) => {
+  return {
+    lat: Number(lat.replace("&", ".")),
+    lng: Number(lng.replace("&", ".")),
+  };
+};
+
+export { getWindDirection, parseTime, parseToUrl, parseToCoordinates };

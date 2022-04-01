@@ -8,10 +8,7 @@ import useWaterTemp from "../hooks/useWaterTemp";
 import { getWindDirection, parseTime } from "../helpers";
 
 export default function Aside({ weatherData, station }) {
-  console.log(weatherData);
   const { name, sys, wind, main, coord } = weatherData;
-
-  console.log(main);
 
   const temp = useWaterTemp(station);
 

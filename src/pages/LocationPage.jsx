@@ -6,17 +6,40 @@ import Container from "@mui/material/Container";
 import WeatherChart from "../components/WeatherChart";
 import { parseToCoordinates } from "../helpers";
 import useForecast from "../hooks/useForecast";
+import useLocation from "../hooks/useLocation";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import CustomDialog from "../components/CustomDialog";
 
 const LocationPage = () => {
   const { lat, lon: lng } = useParams();
   const [coords, setCoords] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const parsedToCoords = parseToCoordinates({ lat, lng });
 
     setCoords(parsedToCoords);
   }, []);
+
+  const handleClickOpen = () => setOpen(true);
+
+  // handles users data
+  const { createLocation } = useLocation();
+
+  const handleClose = (values) => {
+    const { locationName, windDirection, windSpeed } = values;
+    setOpen(false);
+
+    const locationToSave = {
+      coords,
+      locationName,
+      windDirection,
+      windSpeed,
+    };
+
+    createLocation(locationToSave);
+  };
 
   // get todays weather
   const weatherData = useCoordinates(coords);
@@ -30,6 +53,10 @@ const LocationPage = () => {
       {weatherData.isLoading && <p>Loading weatherData</p>}
       {weatherData.data && <LocationTable weatherData={weatherData.data} />}
 
+      <Button variant="contained" onClick={handleClickOpen}>
+        Save this location
+      </Button>
+
       <Box
         sx={{
           minWidth: "300px",
@@ -42,6 +69,7 @@ const LocationPage = () => {
         <img src="http://via.placeholder.com/550x150" />
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
       </Box>
+      <CustomDialog open={open} handleClose={handleClose} />
     </Container>
   );
 };

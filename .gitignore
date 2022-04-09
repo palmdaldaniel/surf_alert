@@ -9,6 +9,11 @@ lerna-debug.log*
 # Mac files
 .DS_Store
 
+# mockdata
+mockData.js
+windData.json
+
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

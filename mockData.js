@@ -190,7 +190,7 @@ const Varberg = {
   cod: 200,
 };
 
-const favorites = [
+const locations = [
   {
     name: "kåseberga",
     lon: 14.0657,
@@ -323,16 +323,32 @@ const getDirection = (deg) => {
   }
 };
 
-const parsedData = windData.map((item) => {
-  const options = { month: "numeric", day: "numeric" };
-  const date = new Date(item.dt * 1000).toLocaleDateString([], options);
+const savedLocations = [
+  {
+    locationId: "b39c696f-93bb-443a-bb34-9a01e193e248",
+    coordinates: {
+      lon: 1231.321,
+      lat: 123.1231,
+    },
+    locationName: "Kåseberga",
+    created: "March 7, 2022 at 11:31:30 AM UTC+1",
+    edited: "March 7, 2022 at 11:31:30 AM UTC+1",
+    owner: "hOagfNgWwYSFn1Vau4BB949ZXOv2",
+    prefferedWindDirection: 4322,
+    prefferedWindSpeed: 1231,
+  },
+];
 
-  date;
-
-  return {
-    day: `${date} | ${getDirection(item.wind_deg)}`,
-    windSpeed: item.wind_speed,
-  };
-});
-
-parsedData;
+const images = [
+  {
+    locationId: "665a13a8-4d94-4a65-babc-16d0542fba64",
+    ext: "png",
+    name: "Screenshot 2022-01-11 at 10.33.05.png",
+    owner: "hOagfNgWwYSFn1Vau4BB949ZXOv2",
+    path: "images/76c6240b-10b8-4bee-8dd0-34c3b22387f9.png",
+    size: 180829,
+    type: "image/png",
+    url: "https://firebasestorage.googleapis.com/v0/b/photo-review-aad07.appspot.com/o/images%2F76c6240b-10b8-4bee-8dd0-34c3b22387f9.png?alt=media&token=296cd2a4-59ea-4d43-9043-f96c83a08b8b",
+    uuid: "76c6240b-10b8-4bee-8dd0-34c3b22387f9",
+  },
+];

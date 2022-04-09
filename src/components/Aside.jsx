@@ -12,8 +12,6 @@ export default function Aside({ weatherData, stationId }) {
 
   const temp = useWaterTemp(stationId);
 
-  console.log(temp);
-
   return (
     <List
       sx={{

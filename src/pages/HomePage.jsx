@@ -1,6 +1,5 @@
 import { useAuthContext } from "../contexts/AuthContext";
 import Typography from "@mui/material/Typography";
-import SkeletonPage from "./SkeletonPage";
 
 const HomePage = () => {
   const { user } = useAuthContext();

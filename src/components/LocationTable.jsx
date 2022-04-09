@@ -30,7 +30,6 @@ const tableHead = [
 export default function BasicTable({ weatherData, locationData }) {
   const { coord } = weatherData;
 
-  console.log(locationData);
   const [station, setStation] = useState(null);
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const getWindDirection = (degree = null) => {
 
 const getCompass = (deg) => {
   switch (true) {
-    case deg <= 90:
+    case deg >= 300 && deg <= 90:
       return (
         <IconWrapper iconName="arrow-up">
           <span>N</span>
@@ -33,12 +33,22 @@ const getCompass = (deg) => {
           <span>W</span>
         </IconWrapper>
       );
-    case deg >= 300:
-      return (
-        <IconWrapper iconName="arrow-up">
-          <span>N</span>
-        </IconWrapper>
-      );
+    default:
+      return false;
+  }
+};
+
+const getCompass2 = (deg) => {
+  console.log({ deg });
+  switch (true) {
+    case deg < 90 || deg > 300:
+      return "N";
+    case deg > 90 && deg < 160:
+      return "E";
+    case deg >= 160 && deg < 200:
+      return "S";
+    case deg >= 200 && deg <= 300:
+      return "W";
     default:
       return false;
   }
@@ -73,6 +83,7 @@ const parseForecast = (data = null) => {
     return {
       day: date,
       windSpeed: item.wind_speed,
+      windDeg: getCompass2(item.wind_deg),
     };
   });
 };

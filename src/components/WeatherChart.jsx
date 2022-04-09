@@ -4,13 +4,12 @@ import { parseForecast } from "../helpers";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  LabelList,
 } from "recharts";
 import { Box } from "@mui/material";
 
@@ -20,8 +19,30 @@ const WeatherChart = ({ forecastData }) => {
   useEffect(() => {
     const parsedForecastData = parseForecast(forecastData);
 
+    console.log("data", parsedForecastData);
+
     setChartData(parsedForecastData);
   }, []);
+
+  const CustomLabel = (props) => {
+    const { x, y, width, index } = props;
+    const radius = 15;
+
+    return (
+      <g>
+        <circle cx={x + width / 2} cy={y - radius} r={radius} fill="#8884d8" />
+        <text
+          x={x + width / 2}
+          y={y - radius}
+          fill="#fff"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {chartData[index].windDeg}
+        </text>
+      </g>
+    );
+  };
 
   return (
     <Box
@@ -39,7 +60,9 @@ const WeatherChart = ({ forecastData }) => {
             <YAxis domain={[0, 30]} />
 
             <Legend />
-            <Bar dataKey="windSpeed" fill="#8884d8" />
+            <Bar dataKey="windSpeed" fill="#8884d8">
+              <LabelList content={CustomLabel} position="top" />
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       )}

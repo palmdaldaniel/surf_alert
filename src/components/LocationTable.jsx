@@ -27,8 +27,10 @@ const tableHead = [
   { name: "Temperature", position: "center" },
 ];
 
-export default function BasicTable({ weatherData }) {
-  const { name, sys, wind, main, coord } = weatherData;
+export default function BasicTable({ weatherData, locationData }) {
+  const { coord } = weatherData;
+
+  console.log(locationData);
   const [station, setStation] = useState(null);
 
   useEffect(() => {
@@ -49,7 +51,11 @@ export default function BasicTable({ weatherData }) {
         marginTop: "20px",
       }}
     >
-      <Aside weatherData={weatherData} stationId={station} />
+      <Aside
+        weatherData={weatherData}
+        locationName={locationData ? locationData[0].locationName : undefined}
+        stationId={station}
+      />
     </Container>
   );
 }

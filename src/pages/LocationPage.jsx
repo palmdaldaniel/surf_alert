@@ -12,7 +12,8 @@ import Button from "@mui/material/Button";
 import CustomDialog from "../components/CustomDialog";
 
 const LocationPage = () => {
-  const { lat, lon: lng } = useParams();
+  const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
+
   const [coords, setCoords] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -25,7 +26,7 @@ const LocationPage = () => {
   const handleClickOpen = () => setOpen(true);
 
   // handles users data
-  const { createLocation } = useLocation();
+  const { createLocation, locationQuery } = useLocation(locationId);
 
   const handleClose = (values) => {
     const { locationName, windDirection, windSpeed } = values;
@@ -51,7 +52,14 @@ const LocationPage = () => {
     <Container>
       {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
-      {weatherData.data && <LocationTable weatherData={weatherData.data} />}
+      {weatherData.data && locationQuery.data && (
+        <LocationTable
+          locationData={
+            locationQuery.data.length === 1 ? locationQuery.data : undefined
+          }
+          weatherData={weatherData.data}
+        />
+      )}
 
       <Button variant="contained" onClick={handleClickOpen}>
         Save this location

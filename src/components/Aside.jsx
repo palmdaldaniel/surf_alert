@@ -7,8 +7,8 @@ import useWaterTemp from "../hooks/useWaterTemp";
 
 import { getWindDirection, parseTime } from "../helpers";
 
-export default function Aside({ weatherData, stationId }) {
-  const { name, sys, wind, main, coord } = weatherData;
+export default function Aside({ weatherData, stationId, locationName }) {
+  const { name, sys, wind, main } = weatherData;
 
   const temp = useWaterTemp(stationId);
 
@@ -24,7 +24,10 @@ export default function Aside({ weatherData, stationId }) {
           paddingBottom: 0,
         }}
       >
-        <ListItemText primary="Location" secondary={name} />
+        <ListItemText
+          primary="Location"
+          secondary={locationName ? locationName : name}
+        />
       </ListItem>
       <ListItem
         sx={{

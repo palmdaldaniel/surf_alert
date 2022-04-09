@@ -16,14 +16,18 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 import { CloseFullscreen } from "@mui/icons-material";
 
-const useLocation = () => {
+const useLocation = (locationId = null) => {
   const { user } = useAuthContext();
 
   const savedLocationsColRef = collection(db, "savedLocations");
 
-  const queryKey = ["savedLocations", user.uid];
+  const queryKey = !locationId
+    ? ["savedLocations", user.uid]
+    : ["savedLocation", locationId];
 
-  const queryRef = query(savedLocationsColRef, where("owner", "==", user.uid));
+  const queryRef = !locationId
+    ? query(savedLocationsColRef, where("owner", "==", user.uid))
+    : query(savedLocationsColRef, where("locationId", "==", locationId));
 
   // request with data.
   const locationQuery = useFirestoreQueryData(
@@ -67,7 +71,7 @@ const useLocation = () => {
     }
   };
 
-  return { createLocation };
+  return { locationQuery, createLocation };
 };
 
 export default useLocation;

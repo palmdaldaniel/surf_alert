@@ -48,7 +48,16 @@ function App() {
           }
         />
         <Route
-          path="/locations/:lon/:lat"
+          path="/locations/:lon/:lat/"
+          element={
+            <IsProtected redirectTo="/login">
+              <LocationPage />
+            </IsProtected>
+          }
+        />
+        {/* if user has a location save direct it to this url instead */}
+        <Route
+          path="/locations/:lon/:lat/:locationId"
           element={
             <IsProtected redirectTo="/login">
               <LocationPage />

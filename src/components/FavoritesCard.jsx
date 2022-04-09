@@ -2,13 +2,23 @@ import React from "react";
 
 // mui
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { parseToUrl } from "../helpers";
+import { useNavigate } from "react-router-dom";
+const FavoritesCard = (props) => {
+  const { locationName, coordinates, locationId } = props;
 
-const FavoritesCard = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const url = parseToUrl(coordinates);
+
+    navigate(`/locations/${url.lng}/${url.lat}/${locationId}`);
+  };
+
   return (
     <Card sx={{ display: "flex" }}>
       <CardMedia
@@ -18,7 +28,7 @@ const FavoritesCard = () => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {locationName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000
@@ -26,6 +36,7 @@ const FavoritesCard = () => {
         </Typography>
 
         <Button
+          onClick={handleClick}
           sx={{
             pl: 0,
           }}

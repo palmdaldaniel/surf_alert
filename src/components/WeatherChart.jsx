@@ -19,8 +19,6 @@ const WeatherChart = ({ forecastData }) => {
   useEffect(() => {
     const parsedForecastData = parseForecast(forecastData);
 
-    console.log("data", parsedForecastData);
-
     setChartData(parsedForecastData);
   }, []);
 

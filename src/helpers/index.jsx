@@ -9,7 +9,7 @@ const getWindDirection = (degree = null) => {
 
 const getCompass = (deg) => {
   switch (true) {
-    case deg >= 300 && deg <= 90:
+    case deg >= 300 || deg <= 90:
       return (
         <IconWrapper iconName="arrow-up">
           <span>N</span>
@@ -39,7 +39,6 @@ const getCompass = (deg) => {
 };
 
 const getCompass2 = (deg) => {
-  console.log({ deg });
   switch (true) {
     case deg < 90 || deg > 300:
       return "N";
@@ -94,4 +93,5 @@ export {
   parseToUrl,
   parseToCoordinates,
   parseForecast,
+  getCompass,
 };

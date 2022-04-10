@@ -13,8 +13,6 @@ import { db } from "../firebase";
 
 import { useFirestoreQueryData } from "@react-query-firebase/firestore";
 import { useAuthContext } from "../contexts/AuthContext";
-import { v4 as uuidv4 } from "uuid";
-import { CloseFullscreen } from "@mui/icons-material";
 
 const useLocation = (locationId = null) => {
   const { user } = useAuthContext();
@@ -44,9 +42,14 @@ const useLocation = (locationId = null) => {
 
   const createLocation = async (locationValues = null) => {
     if (!locationValues) return;
-    const uuid = uuidv4();
 
-    const { coords, locationName, windDirection, windSpeed } = locationValues;
+    const {
+      coords,
+      locationName,
+      windDirection,
+      windSpeed,
+      locationId: uuid,
+    } = locationValues;
 
     try {
       await addDoc(savedLocationsColRef, {

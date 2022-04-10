@@ -11,8 +11,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CustomDialog from "../components/CustomDialog";
 
+import useDoc from "../hooks/useDoc";
+
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
+
+  const doc = useDoc(locationId);
 
   const [coords, setCoords] = useState(null);
   const [open, setOpen] = useState(false);
@@ -29,7 +33,7 @@ const LocationPage = () => {
   const { createLocation, locationQuery } = useLocation(locationId);
 
   const handleClose = (values) => {
-    const { locationName, windDirection, windSpeed } = values;
+    const { locationName, windDirection, windSpeed, locationId } = values;
     setOpen(false);
 
     const locationToSave = {
@@ -37,6 +41,7 @@ const LocationPage = () => {
       locationName,
       windDirection,
       windSpeed,
+      locationId,
     };
 
     createLocation(locationToSave);

@@ -13,11 +13,15 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
+import { v4 as uuidv4 } from "uuid";
+
+import DropZone from "./DropZone";
 
 const CustomDialog = ({ open, handleClose }) => {
   const [sliderValue, setSliderValue] = useState(30);
   const [windDirection, setWindDirection] = useState();
   const [locationName, setLocationName] = useState("");
+  const [locationId] = useState(uuidv4());
 
   const handleChange = (event) => setSliderValue(event.target.value);
 
@@ -30,6 +34,7 @@ const CustomDialog = ({ open, handleClose }) => {
       windSpeed: sliderValue,
       windDirection,
       locationName,
+      locationId,
     };
 
     handleClose(values);
@@ -47,6 +52,8 @@ const CustomDialog = ({ open, handleClose }) => {
             You are about to save this location. Please specify conditions when
             this spot fires up 🔥!
           </DialogContentText>
+          <DropZone locationId={locationId} />
+
           <TextField
             value={locationName}
             autoFocus

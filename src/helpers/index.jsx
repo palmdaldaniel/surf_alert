@@ -94,4 +94,5 @@ export {
   parseToCoordinates,
   parseForecast,
   getCompass,
+  getCompass2,
 };

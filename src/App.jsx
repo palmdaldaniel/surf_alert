@@ -55,7 +55,7 @@ function App() {
             </IsProtected>
           }
         />
-        {/* if user has a location save direct it to this url instead */}
+        {/* if user has a location saved direct it to this url instead */}
         <Route
           path="/locations/:lon/:lat/:locationId"
           element={

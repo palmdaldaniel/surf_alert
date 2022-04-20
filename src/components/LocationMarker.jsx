@@ -40,11 +40,31 @@ const LocationMarker = ({ currentPosition }) => {
     if (geo.sys.country !== "SE")
       return (content = <p>This service is only available in sweden</p>);
 
+    const styles = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "10px",
+      height: "10px",
+      width: "10px",
+      transform: `rotate(${180 + geo.wind.deg}deg)`,
+    };
+
     content = (
       <>
         <p>{geo.name}</p>
         <p>Wind speed: {geo.wind.speed} m/s</p>
-        <p>Wind direction: {getWindDirection(geo.wind.deg)}</p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Wind direction:
+          <div style={styles}>
+            <span>&#5169;</span>
+          </div>
+        </div>
         <p>
           {water.parameter.name} {water.parameter.key}
           {water.parameter.unit}

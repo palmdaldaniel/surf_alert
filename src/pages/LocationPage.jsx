@@ -16,7 +16,7 @@ import useDoc from "../hooks/useDoc";
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
 
-  const doc = useDoc(locationId);
+  const img = useDoc(locationId);
 
   const [coords, setCoords] = useState(null);
   const [open, setOpen] = useState(false);
@@ -73,13 +73,18 @@ const LocationPage = () => {
       <Box
         sx={{
           minWidth: "300px",
-
           display: "flex",
-
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        <img src="http://via.placeholder.com/550x150" />
+        {img &&
+          img.docs.map((item) => {
+            const src = item.data();
+            console.log(src);
+
+            return <img src={src.url}></img>;
+          })}
+
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
       </Box>
       <CustomDialog open={open} handleClose={handleClose} />

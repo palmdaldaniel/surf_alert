@@ -1,19 +1,25 @@
-import { doc, getDocs, collection, query, where } from "firebase/firestore";
+import react, { useState } from "react";
+
 import { db } from "../firebase";
 
-const useDoc = async (locationId) => {
+import { useFirestoreQuery } from "@react-query-firebase/firestore";
+import { query, collection, where } from "firebase/firestore";
+
+const useDoc = (locationId) => {
+  if (!locationId) return;
+
   const q = query(
     collection(db, "images"),
-    where("locationId", "==", "b6b583da-c1e6-4e7a-b9bf-b98d10901d91")
+    where("locationId", "==", locationId)
   );
 
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
+  const imgQuery = useFirestoreQuery(["images", locationId], q, {
+    subscribe: true,
   });
 
-  return;
+  const snapshot = imgQuery.data;
+
+  return snapshot;
 };
 
 export default useDoc;

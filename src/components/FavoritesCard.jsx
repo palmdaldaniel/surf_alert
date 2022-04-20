@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // mui
@@ -13,29 +13,47 @@ import { parseToUrl, parseTime, getCompass2 } from "../helpers";
 
 // hooks
 import useCoordinates from "../hooks/useCoordinates";
+import useDoc from "../hooks/useDoc";
 
 const FavoritesCard = (props) => {
-  const { locationName, coordinates, locationId } = props;
+  const [locationImg, setLocationImg] = useState();
+
+  const { locationName, coordinates, locationId, deleteClick, _id } = props;
 
   const weatherData = useCoordinates(coordinates);
 
+  const img = useDoc(locationId);
+
   const navigate = useNavigate();
+
   const handleClick = () => {
     const url = parseToUrl(coordinates);
 
     navigate(`/locations/${url.lng}/${url.lat}/${locationId}`);
   };
 
+  const finishedLoading = (src) => setLocationImg(src);
+
   return (
     <Card sx={{ display: "flex" }}>
-      <CardMedia
-        sx={{
-          maxWidth: "200px",
-        }}
-        component="img"
-        alt="green iguana"
-        image="https://images.unsplash.com/photo-1591630866811-eceedf667541?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80"
-      />
+      {img &&
+        img.docs.map((item, i) => {
+          const src = item.data();
+
+          return (
+            <CardMedia
+              key={i}
+              sx={{
+                maxWidth: "200px",
+              }}
+              component="img"
+              alt="green iguana"
+              image={src.url}
+              onLoad={() => finishedLoading(src)}
+            />
+          );
+        })}
+
       <CardContent
         sx={{
           minHeight: "200px",
@@ -60,7 +78,27 @@ const FavoritesCard = (props) => {
               <li>Sunrise: {parseTime(weatherData.data.sys.sunrise)}</li>
               <li>Sunset: {parseTime(weatherData.data.sys.sunset)}</li>
               <li>WindSpeed {weatherData.data.wind.speed} m/s</li>
-              <li>Winddirection {getCompass2(weatherData.data.wind.deg)}</li>
+              <li
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                Winddirection:
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "10px",
+                    height: "10px",
+                    width: "10px",
+                    transform: `rotate(${180 + weatherData.data.wind.deg}deg)`,
+                  }}
+                >
+                  <span>&#5169;</span>
+                </div>
+              </li>
             </ul>
           )}
         </Box>
@@ -74,6 +112,16 @@ const FavoritesCard = (props) => {
           size="small"
         >
           Go To Spot
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => deleteClick(_id, locationImg)}
+          sx={{
+            pl: 0,
+          }}
+          size="small"
+        >
+          Delete
         </Button>
       </CardContent>
     </Card>

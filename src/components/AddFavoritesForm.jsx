@@ -15,6 +15,7 @@ import Switch from "@mui/material/Switch";
 import { useAuthContext } from "../contexts/AuthContext";
 import useLocation from "../hooks/useLocation";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const initialData = [
   {
@@ -42,6 +43,7 @@ const initialData = [
 
 const AddFavoritesForm = () => {
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const [checked, setChecked] = React.useState([]);
   const { createLocation } = useLocation();
@@ -65,6 +67,7 @@ const AddFavoritesForm = () => {
 
     if (!locations) {
       console.log("navigate to homepage");
+      navigate("/");
       return;
     }
 
@@ -85,6 +88,7 @@ const AddFavoritesForm = () => {
       createLocation(locationValues);
     });
     console.log("give me some favorites pls 🔥");
+    navigate("profile");
   };
 
   return (

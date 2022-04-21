@@ -21,8 +21,8 @@ const useRegisterUser = () => {
 
       await register(email, password);
 
-      // when registration is successfull navigate to homepage view
-      navigate("/");
+      // when registration is successfull navigate to onboardpage view
+      navigate("/register/onboard");
     } catch (error) {
       setMessage(error.message);
       setIsLoading(false);

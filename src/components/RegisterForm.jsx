@@ -1,4 +1,4 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -29,6 +29,7 @@ const RegisterForm = () => {
 
     await createUser(values);
     resetForm();
+
     // loose focus on last input
     lastInputRef.current.blur();
   };

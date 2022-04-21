@@ -13,16 +13,30 @@ import ListItemText from "@mui/material/ListItemText";
 import Switch from "@mui/material/Switch";
 
 import { useAuthContext } from "../contexts/AuthContext";
+import useLocation from "../hooks/useLocation";
+import { v4 as uuidv4 } from "uuid";
 
 const initialData = [
   {
     spot: "Kåseberga",
+    windSpeed: 15,
+    direction: 190,
+    lat: 55.3845235,
+    lng: 14.0630386,
   },
   {
     spot: "Mölle",
+    windSpeed: 12,
+    direction: 270,
+    lat: 56.2833472,
+    lng: 12.5002034,
   },
   {
     spot: "Torö",
+    windSpeed: 12,
+    direction: 270,
+    lat: 58.8401,
+    lng: 17.8419,
   },
 ];
 
@@ -30,9 +44,11 @@ const AddFavoritesForm = () => {
   const { user } = useAuthContext();
 
   const [checked, setChecked] = React.useState([]);
+  const { createLocation } = useLocation();
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
+
     const newChecked = [...checked];
 
     if (currentIndex === -1) {
@@ -42,6 +58,33 @@ const AddFavoritesForm = () => {
     }
 
     setChecked(newChecked);
+  };
+
+  const handleClick = (isCreating) => {
+    const locations = isCreating ? checked : undefined;
+
+    if (!locations) {
+      console.log("navigate to homepage");
+      return;
+    }
+
+    locations.forEach((location) => {
+      const uuid = uuidv4(); // give an id
+
+      const locationValues = {
+        coords: {
+          lat: location.lat,
+          lng: location.lng,
+        },
+        locationName: location.spot,
+        windDirection: location.direction,
+        windSpeed: location.windSpeed,
+        locationId: uuid,
+      };
+
+      createLocation(locationValues);
+    });
+    console.log("give me some favorites pls 🔥");
   };
 
   return (
@@ -69,14 +112,14 @@ const AddFavoritesForm = () => {
             <ListItem key={index} disablePadding>
               <ListItemButton
                 role={undefined}
-                onClick={handleToggle(value.spot)}
+                onClick={handleToggle(value)}
                 dense
               >
                 <ListItemText id={labelId} primary={`Spot: ${value.spot}`} />
                 <ListItemIcon>
                   <Switch
                     edge="start"
-                    checked={checked.indexOf(value.spot) !== -1}
+                    checked={checked.indexOf(value) !== -1}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ "aria-labelledby": labelId }}
@@ -101,7 +144,9 @@ const AddFavoritesForm = () => {
         >
           No pls!
         </Button>
-        <Button variant="contained">Add to profile 🔥</Button>
+        <Button onClick={() => handleClick(true)} variant="contained">
+          Add to profile 🔥
+        </Button>
       </Box>
     </Box>
   );

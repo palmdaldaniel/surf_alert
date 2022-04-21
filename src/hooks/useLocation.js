@@ -43,6 +43,8 @@ const useLocation = (locationId = null) => {
   const createLocation = async (locationValues = null) => {
     if (!locationValues) return;
 
+    console.log("locationvalues", locationValues);
+
     const {
       coords,
       locationName,

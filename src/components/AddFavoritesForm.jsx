@@ -88,7 +88,7 @@ const AddFavoritesForm = () => {
       createLocation(locationValues);
     });
     console.log("give me some favorites pls 🔥");
-    navigate("profile");
+    navigate("/profile");
   };
 
   return (

@@ -9,7 +9,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-import { parseToUrl, parseTime, getCompass2 } from "../helpers";
+import {
+  parseToUrl,
+  parseTime,
+  checkDirection,
+  checkWindSpeed,
+} from "../helpers";
 
 // hooks
 import useCoordinates from "../hooks/useCoordinates";
@@ -18,7 +23,15 @@ import useDoc from "../hooks/useDoc";
 const FavoritesCard = (props) => {
   const [locationImg, setLocationImg] = useState();
 
-  const { locationName, coordinates, locationId, deleteClick, _id } = props;
+  const {
+    locationName,
+    coordinates,
+    locationId,
+    deleteClick,
+    _id,
+    prefferedWindDirection,
+    prefferedWindSpeed,
+  } = props;
 
   const weatherData = useCoordinates(coordinates);
 
@@ -33,6 +46,17 @@ const FavoritesCard = (props) => {
   };
 
   const finishedLoading = (src) => setLocationImg(src);
+
+  const checkWindConditions = (currentConditions) => {
+    const { deg, speed } = currentConditions;
+
+    const directionIsGood = checkDirection(deg, prefferedWindDirection);
+    const speedIsGood = checkWindSpeed(speed, prefferedWindSpeed);
+
+    if (!directionIsGood && !speedIsGood) {
+      return "#d1ffc659";
+    }
+  };
 
   return (
     <Card sx={{ display: "flex" }}>
@@ -65,27 +89,28 @@ const FavoritesCard = (props) => {
           }
         />
       )}
-
-      <CardContent
-        sx={{
-          minHeight: "200px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box
+      {weatherData.data && (
+        <CardContent
           sx={{
+            minHeight: "200px",
             display: "flex",
             flexDirection: "column",
-            ml: "20px",
+            justifyContent: "space-between",
+            width: "100%",
+            backgroundColor: checkWindConditions(weatherData.data.wind),
           }}
         >
-          <Typography gutterBottom variant="h5" component="div">
-            {locationName}
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              ml: "20px",
+            }}
+          >
+            <Typography gutterBottom variant="h5" component="div">
+              {locationName}
+            </Typography>
 
-          {weatherData.data && (
             <ul>
               <li>Sunrise: {parseTime(weatherData.data.sys.sunrise)}</li>
               <li>Sunset: {parseTime(weatherData.data.sys.sunset)}</li>
@@ -112,30 +137,30 @@ const FavoritesCard = (props) => {
                 </div>
               </li>
             </ul>
-          )}
-        </Box>
+          </Box>
 
-        <Button
-          variant="contained"
-          onClick={handleClick}
-          sx={{
-            pl: 0,
-          }}
-          size="small"
-        >
-          Go To Spot
-        </Button>
-        <Button
-          variant="outlined"
-          onClick={() => deleteClick(_id, locationImg)}
-          sx={{
-            pl: 0,
-          }}
-          size="small"
-        >
-          Delete
-        </Button>
-      </CardContent>
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+              pl: 0,
+            }}
+            size="small"
+          >
+            Go To Spot
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={() => deleteClick(_id, locationImg)}
+            sx={{
+              pl: 0,
+            }}
+            size="small"
+          >
+            Delete
+          </Button>
+        </CardContent>
+      )}
     </Card>
   );
 };

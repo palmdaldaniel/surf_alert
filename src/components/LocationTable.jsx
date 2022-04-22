@@ -6,27 +6,6 @@ import { stations } from "../helpers/stations";
 import { useEffect, useState } from "react";
 import { calcNearest } from "../helpers/CalcDistance";
 
-//import { favorites } from "../helpers/favoritesData";
-
-/** properties
- * name
- * sys { sunrise, sunset, country}
- * visibilitiy
- * weather[0] {description, icon, main}
- * wind {speed, deg, gust}
- * main { temp, feels_like}
- */
-
-const tableHead = [
-  { name: "Location", position: "center" },
-  { name: "Sunrise", position: "center" },
-  { name: "Sunset", position: "center" },
-  { name: "Wind Speed", position: "center" },
-  { name: "Wind Direction", position: "center" },
-  { name: "Water Temp", position: "center" },
-  { name: "Temperature", position: "center" },
-];
-
 export default function BasicTable({ weatherData, locationData }) {
   const { coord } = weatherData;
 

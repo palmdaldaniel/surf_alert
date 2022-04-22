@@ -87,6 +87,49 @@ const parseForecast = (data = null) => {
   });
 };
 
+const checkDirection = (current, user) => {
+  let directionIsGood;
+
+  switch (true) {
+    case current === user:
+      directionIsGood = true;
+      break;
+    case current > user:
+      if (current > user + 10) {
+        directionIsGood = false;
+      } else {
+        directionIsGood = true;
+      }
+      directionIsGood;
+      break;
+
+    case current < user:
+      if (current < user - 10) {
+        directionIsGood = false;
+      } else {
+        directionIsGood = true;
+      }
+      break;
+    default:
+      directionIsGood = false;
+      break;
+  }
+
+  return directionIsGood;
+};
+
+const checkWindSpeed = (current, user) => {
+  let windIsGood;
+
+  if (current >= user) {
+    windIsGood = true;
+  } else {
+    windIsGood = false;
+  }
+
+  return windIsGood;
+};
+
 export {
   getWindDirection,
   parseTime,
@@ -95,4 +138,6 @@ export {
   parseForecast,
   getCompass,
   getCompass2,
+  checkDirection,
+  checkWindSpeed,
 };

@@ -53,7 +53,7 @@ const FavoritesCard = (props) => {
     const directionIsGood = checkDirection(deg, prefferedWindDirection);
     const speedIsGood = checkWindSpeed(speed, prefferedWindSpeed);
 
-    if (!directionIsGood && !speedIsGood) {
+    if (directionIsGood && speedIsGood) {
       return "#d1ffc659";
     }
   };

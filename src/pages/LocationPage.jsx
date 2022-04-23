@@ -15,6 +15,7 @@ import CustomDialog from "../components/CustomDialog";
 import useDoc from "../hooks/useDoc";
 
 import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
+import LeafletMap from "../components/LeafletMap";
 
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
@@ -62,6 +63,7 @@ const LocationPage = () => {
     <Container>
       {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
+
       {weatherData.data && locationQuery.data && (
         <LocationTable
           locationData={
@@ -107,6 +109,15 @@ const LocationPage = () => {
 
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
       </Box>
+      {coords && (
+        <LeafletMap
+          onLocationPage
+          coords={coords}
+          locationId={locationId}
+          height={{ height: "500px" }}
+        />
+      )}
+
       <CustomDialog open={open} handleClose={handleClose} />
     </Container>
   );

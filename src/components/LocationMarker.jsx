@@ -10,7 +10,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
 import { stations } from "../helpers/stations";
 
-const LocationMarker = ({ currentPosition }) => {
+const LocationMarker = ({ currentPosition, onLocationPage }) => {
   const [position, setPosition] = useState(currentPosition);
   const [coordUrl, setCoordUrl] = useState(parseToUrl(currentPosition));
 
@@ -27,10 +27,14 @@ const LocationMarker = ({ currentPosition }) => {
 
   const weatherData = useCoordinates(position);
 
-  useMapEvent({
+  const map = useMapEvent({
     click(e) {
-      setPosition(e.latlng);
-      setCoordUrl(parseToUrl(e.latlng));
+      if (!onLocationPage) {
+        setPosition(e.latlng);
+        setCoordUrl(parseToUrl(e.latlng));
+      } else {
+        console.log("not on location");
+      }
     },
   });
 

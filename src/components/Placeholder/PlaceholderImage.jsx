@@ -10,7 +10,7 @@ const PlaceHolderImage = ({ locationId }) => {
   return (
     <>
       <div
-        onClick={openDialog}
+        onClick={locationId && openDialog}
         className={locationId ? "placeholder-wrapper" : ""}
         style={{
           maxWidth: "500px",

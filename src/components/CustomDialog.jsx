@@ -71,11 +71,12 @@ const CustomDialog = ({ open, handleClose }) => {
               sx={{
                 flex: 0.5,
               }}
+              max="30"
               value={sliderValue}
               aria-label="Slider"
               onChange={(e) => handleChange(e)}
             />
-            <p>{sliderValue}</p>
+            <p>{sliderValue}m/s</p>
           </Box>
           <div>
             <FormControl fullWidth>
@@ -90,9 +91,13 @@ const CustomDialog = ({ open, handleClose }) => {
                 onChange={handleSelectChange}
               >
                 <MenuItem value={0}>North</MenuItem>
+                <MenuItem value={45}>Nort East</MenuItem>
                 <MenuItem value={90}>East</MenuItem>
+                <MenuItem value={135}>South East</MenuItem>
                 <MenuItem value={180}>South</MenuItem>
+                <MenuItem value={225}>South West</MenuItem>
                 <MenuItem value={270}>West</MenuItem>
+                <MenuItem value={315}>North West</MenuItem>
               </Select>
             </FormControl>
           </div>

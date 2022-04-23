@@ -6,13 +6,18 @@ import LocationMarker from "./LocationMarker";
 
 import "leaflet/dist/leaflet.css";
 
-const LeafletMap = () => {
+const LeafletMap = ({ height, locationId, coords, onLocationPage }) => {
+  console.log(height, locationId);
   const [currentPosition, setCurrentPosition] = useState(null);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      setCurrentPosition([pos.coords.latitude, pos.coords.longitude]);
-    });
+    if (locationId || coords) {
+      setCurrentPosition([coords.lat, coords.lng]);
+    } else {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        setCurrentPosition([pos.coords.latitude, pos.coords.longitude]);
+      });
+    }
   }, []);
 
   return (
@@ -20,8 +25,8 @@ const LeafletMap = () => {
       sx={{
         margin: { sm: "10px 0", md: "0" },
         flex: 1,
-        height: "600px",
-        width: "100s%",
+        height: height ? `${height.height}` : "600px",
+        width: "100%",
       }}
     >
       {currentPosition && (
@@ -39,6 +44,7 @@ const LeafletMap = () => {
             url={`https://api.mapbox.com/styles/v1/${mapboxConfig.username}/${mapboxConfig.styleId}/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxConfig.token}`}
           />
           <LocationMarker
+            onLocationPage={onLocationPage}
             currentPosition={{
               lat: currentPosition[0],
               lng: currentPosition[1],

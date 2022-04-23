@@ -63,7 +63,7 @@ const FavoritesCard = (props) => {
 
   return (
     <Card sx={{ display: "flex" }}>
-      {img?.docs === [] ? (
+      {img && img?.docs.length > 0 ? (
         img.docs.map((item, i) => {
           const src = item.data();
 

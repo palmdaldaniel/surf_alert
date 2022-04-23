@@ -13,7 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
-    "@mui/icons-material": "^5.5.1",
+    "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.3.0",
     "@react-query-firebase/auth": "^0.3.4",
     "@react-query-firebase/firestore": "^0.4.2",

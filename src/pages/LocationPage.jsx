@@ -14,10 +14,14 @@ import CustomDialog from "../components/CustomDialog";
 
 import useDoc from "../hooks/useDoc";
 
+import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
+
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
 
   const img = useDoc(locationId);
+
+  console.log(img?.docs);
 
   const [coords, setCoords] = useState(null);
   const [open, setOpen] = useState(false);
@@ -81,7 +85,7 @@ const LocationPage = () => {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        {img?.docs === [] ? (
+        {img?.docs.length > 0 ? (
           img.docs.map((item, i) => {
             const src = item.data();
 
@@ -98,16 +102,7 @@ const LocationPage = () => {
             );
           })
         ) : (
-          <CardMedia
-            sx={{
-              maxWidth: "500px",
-            }}
-            component="img"
-            alt="surfer"
-            image={
-              "https://images.unsplash.com/photo-1516370873344-fb7c61054fa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            }
-          />
+          <PlaceholderImage locationId={locationId} />
         )}
 
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}

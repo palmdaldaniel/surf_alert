@@ -82,7 +82,7 @@ const parseForecast = (data = null) => {
     return {
       day: date,
       windSpeed: item.wind_speed,
-      windDeg: getCompass2(item.wind_deg),
+      windDeg: item.wind_deg,
     };
   });
 };

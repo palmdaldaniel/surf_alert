@@ -7,7 +7,6 @@ import LocationMarker from "./LocationMarker";
 import "leaflet/dist/leaflet.css";
 
 const LeafletMap = ({ height, locationId, coords, onLocationPage }) => {
-  console.log(height, locationId);
   const [currentPosition, setCurrentPosition] = useState(null);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const LeafletMap = ({ height, locationId, coords, onLocationPage }) => {
   return (
     <Box
       sx={{
-        margin: { sm: "10px 0", md: "0" },
+        margin: { sm: "10px 0", md: "10px 0" },
         flex: 1,
         height: height ? `${height.height}` : "600px",
         width: "100%",

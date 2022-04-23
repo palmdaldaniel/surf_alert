@@ -23,22 +23,21 @@ const WeatherChart = ({ forecastData }) => {
   }, []);
 
   const CustomLabel = (props) => {
-    const { x, y, width, index } = props;
-    const radius = 15;
+    const { x, y, index, fill } = props;
 
     return (
-      <g>
-        <circle cx={x + width / 2} cy={y - radius} r={radius} fill="#8884d8" />
-        <text
-          x={x + width / 2}
-          y={y - radius}
-          fill="#fff"
-          textAnchor="middle"
-          dominantBaseline="middle"
-        >
-          {chartData[index].windDeg}
-        </text>
-      </g>
+      <text
+        x={x + 30}
+        y={y + -5}
+        dy={-15}
+        fontSize="16"
+        fontFamily="sans-serif"
+        fill={fill}
+        textAnchor="middle"
+        rotate={chartData[index].windDeg + 180}
+      >
+        &#5169;
+      </text>
     );
   };
 
@@ -58,9 +57,11 @@ const WeatherChart = ({ forecastData }) => {
             <YAxis domain={[0, 30]} />
 
             <Legend />
-            <Bar dataKey="windSpeed" fill="#8884d8">
-              <LabelList content={CustomLabel} position="top" />
-            </Bar>
+            <Bar
+              dataKey="windSpeed"
+              fill="#8884d8"
+              label={<CustomLabel />}
+            ></Bar>
           </BarChart>
         </ResponsiveContainer>
       )}

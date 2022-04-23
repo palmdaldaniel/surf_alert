@@ -20,9 +20,8 @@ import LeafletMap from "../components/LeafletMap";
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
 
-  const img = useDoc(locationId);
-
-  console.log(img?.docs);
+  const alowImgRequest = locationId ? false : true;
+  const img = useDoc(locationId, undefined, alowImgRequest);
 
   const [coords, setCoords] = useState(null);
   const [open, setOpen] = useState(false);

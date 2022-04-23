@@ -11,6 +11,7 @@ import LocationsPage from "./pages/LocationsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LocationPage from "./pages/LocationPage";
 import OnboardPage from "./pages/OnboardPage";
+import UpdateProfilePage from "./pages/UpdateProfilePage";
 
 //components
 import IsProtected from "./components/IsProtected";
@@ -33,6 +34,14 @@ function App() {
           element={
             <IsProtected redirectTo="/login">
               <ProfilePage />
+            </IsProtected>
+          }
+        />
+        <Route
+          path="/update-profile"
+          element={
+            <IsProtected redirectTo="/login">
+              <UpdateProfilePage />
             </IsProtected>
           }
         />

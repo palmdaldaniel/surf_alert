@@ -49,23 +49,40 @@ const useUploadFiles = () => {
         // get reference to collection 'images'
         const collectionRef = collection(db, "images");
 
-        // a document is created in the db
-        await addDoc(collectionRef, {
-          locationId,
-          name: image.name,
-          path: fileRef.fullPath,
-          size: image.size,
-          type: image.type,
-          owner: user.uid,
-          ext,
-          url,
-          uuid,
-        });
+        const uploadDocumentModel = locationId
+          ? {
+              locationId,
+              name: image.name,
+              path: fileRef.fullPath,
+              size: image.size,
+              type: image.type,
+              owner: user.uid,
+              ext,
+              url,
+              uuid,
+            }
+          : {
+              profileImageId: user.uid,
+              name: image.name,
+              path: fileRef.fullPath,
+              size: image.size,
+              type: image.type,
+              owner: user.uid,
+              ext,
+              url,
+              uuid,
+            };
 
-        setMessage({
-          type: "success",
-          msg: "Congrats your file/files are uploaded",
-        });
+        // a document is created in the db
+        try {
+          await addDoc(collectionRef, uploadDocumentModel);
+          setMessage({
+            type: "success",
+            msg: "Congrats your file/files are uploaded",
+          });
+        } catch (error) {
+          console.log({ error });
+        }
       }
     );
   };

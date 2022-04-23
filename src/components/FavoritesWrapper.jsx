@@ -8,6 +8,8 @@ import FavoritesCard from "./FavoritesCard";
 import useLocation from "../hooks/useLocation";
 import DeleteDialog from "./DeleteDialog";
 import useCollection from "../hooks/useCollection";
+import Alert from "@mui/material/Alert";
+import Typography from "@mui/material/Typography";
 
 const FavoritesWrapper = () => {
   const [locationToBeDeleted, setLocationToBeDelete] = useState();
@@ -43,11 +45,18 @@ const FavoritesWrapper = () => {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           {favorites.locationQuery.data &&
+          favorites.locationQuery.data.length > 0 ? (
             favorites.locationQuery.data.map((item, i) => (
               <Grid key={item._id} item xs={12} md={6}>
                 <FavoritesCard deleteClick={openDialog} {...item} />
               </Grid>
-            ))}
+            ))
+          ) : (
+            <Alert sx={{ margin: "10px", margin: "50px auto" }} severity="info">
+              You have no favorites yet. Go to locations in the menu to set
+              some!
+            </Alert>
+          )}
         </Grid>
       </Box>
       <DeleteDialog

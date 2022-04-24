@@ -4,18 +4,20 @@ import Box from "@mui/material/Box";
 
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import FavoritesCard from "./FavoritesCard";
-import useLocation from "../hooks/useLocation";
-import DeleteDialog from "./DeleteDialog";
-import useCollection from "../hooks/useCollection";
 import Alert from "@mui/material/Alert";
-import Typography from "@mui/material/Typography";
+
+import FavoritesCard from "./FavoritesCard";
+import useLocation from "../../hooks/useLocation";
+import DeleteDialog from "../DeleteDialog";
+import useCollection from "../../hooks/useCollection";
 
 const FavoritesWrapper = () => {
   const [locationToBeDeleted, setLocationToBeDelete] = useState();
   const [isOpen, setIsOpen] = useState(false);
 
   const favorites = useLocation();
+
+  console.log(favorites);
 
   const collection = useCollection();
   const handleDeleteClick = (action) => {

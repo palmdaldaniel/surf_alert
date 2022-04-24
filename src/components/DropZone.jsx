@@ -7,11 +7,9 @@ import {
   rejectStyle,
 } from "../utils/DropZoneStyles";
 
-import useUploadFile from "../hooks/useUploadFile";
 import CustomProgress from "./CustomProgress";
 
-const DropZone = ({ locationId }) => {
-  const fileUploader = useUploadFile();
+const DropZone = ({ locationId, fileUploader }) => {
   const onDrop = useCallback((acceptedFiles) => {
     // get the first one in the array
 

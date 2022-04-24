@@ -12,6 +12,7 @@ const useDoc = (locationId, userId, noProfile) => {
 
   const imgQuery = useFirestoreQuery(["images", locationId ?? userId], q, {
     subscribe: true,
+    refetchOnMount: "always",
   });
 
   const snapshot = imgQuery.data;

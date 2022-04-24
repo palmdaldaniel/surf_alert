@@ -8,6 +8,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 
 const useUploadFiles = () => {
   const [message, setMessage] = useState(null);
+
   const [progress, setProgress] = useState(0);
   const { user } = useAuthContext();
 

@@ -27,7 +27,6 @@ import useDoc from "../../hooks/useDoc";
 import useDialog from "../../hooks/useDialog";
 import useMenu from "../../hooks/useMenu";
 import CustomDialog from "../CustomDialog";
-import useLocation from "../../hooks/useLocation";
 
 const FavoritesCard = (props) => {
   const {
@@ -38,6 +37,7 @@ const FavoritesCard = (props) => {
     _id,
     prefferedWindDirection,
     prefferedWindSpeed,
+    handleUpdateRequest,
   } = props;
 
   const [locationImg, setLocationImg] = useState();
@@ -46,7 +46,6 @@ const FavoritesCard = (props) => {
   // hooks
   const { isOpen, closeDialog, openDialog } = useDialog();
   const { menuIsOpen, closeMenu, openMenu, anchorEl } = useMenu();
-  const { updateLocation } = useLocation();
 
   const handleUpdateDialog = (values, isCancelled) => {
     if (isCancelled) {
@@ -55,7 +54,8 @@ const FavoritesCard = (props) => {
     }
 
     const docId = _id;
-    updateLocation(values, docId);
+
+    handleUpdateRequest(values, docId);
     closeDialog();
     closeMenu();
   };
@@ -127,7 +127,7 @@ const FavoritesCard = (props) => {
             </ListItemIcon>
             <ListItemText>Update preferenses</ListItemText>
           </MenuItem>
-          <MenuItem onClick={() => deleteClick(_id, locationImg)}>
+          <MenuItem onClick={() => deleteClick(_id, locationImg, locationName)}>
             <ListItemIcon>
               <DeleteIcon fontSize="small" />
             </ListItemIcon>

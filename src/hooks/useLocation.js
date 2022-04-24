@@ -16,6 +16,16 @@ import { useAuthContext } from "../contexts/AuthContext";
 
 const useLocation = (locationId = null) => {
   const { user } = useAuthContext();
+  const [feedBack, setFeedBack] = useState();
+
+  console.log(feedBack);
+
+  useEffect(() => {
+    // clear feedback
+    if (feedBack) {
+      setTimeout(() => setFeedBack(), 3000);
+    }
+  }, [feedBack]);
 
   const savedLocationsColRef = collection(db, "savedLocations");
 
@@ -63,8 +73,16 @@ const useLocation = (locationId = null) => {
 
       // when all is good and well
       console.log("doc created, good job 🔥");
+      setFeedBack({
+        type: "success",
+        msg: "Location saved successfully",
+      });
     } catch (error) {
       console.log("error", error.message);
+      setFeedBack({
+        type: "warning",
+        msg: "Location could not be saved",
+      });
     }
   };
 
@@ -84,12 +102,20 @@ const useLocation = (locationId = null) => {
       });
 
       console.log("updating values");
+      setFeedBack({
+        type: "success",
+        msg: "Location updated successfully",
+      });
     } catch (error) {
       console.log("error", error);
+      setFeedBack({
+        type: "warning",
+        msg: "Could not update location",
+      });
     }
   };
 
-  return { locationQuery, createLocation, updateLocation };
+  return { locationQuery, createLocation, updateLocation, feedBack };
 };
 
 export default useLocation;

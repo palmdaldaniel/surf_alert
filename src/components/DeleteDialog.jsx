@@ -8,14 +8,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 
-const DeleteDialog = ({ open, handleClose, handleDelete, id }) => {
+const DeleteDialog = ({ open, handleClose, handleDelete, id, name }) => {
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Delete saved location</DialogTitle>
         <DialogContent>
           <Typography>
-            You are about to delete location with id: {id}
+            You are about to delete location this location: {name ? name : id}
           </Typography>
         </DialogContent>
         <DialogActions>

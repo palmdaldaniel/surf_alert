@@ -9,18 +9,23 @@ import useForecast from "../hooks/useForecast";
 import useLocation from "../hooks/useLocation";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CardMedia from "@mui/material/CardMedia";
+
 import CustomDialog from "../components/CustomDialog";
 
 import useDoc from "../hooks/useDoc";
 
 import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
 import LeafletMap from "../components/LeafletMap";
+import Alert from "@mui/material/Alert";
+import SpotImage from "../components/Image/SpotImage";
 
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
 
+  const { createLocation, locationQuery, feedBack } = useLocation(locationId);
+
   const alowImgRequest = locationId ? false : true;
+
   const img = useDoc(locationId, undefined, alowImgRequest);
 
   const [coords, setCoords] = useState(null);
@@ -35,9 +40,8 @@ const LocationPage = () => {
   const handleClickOpen = () => setOpen(true);
 
   // handles users data
-  const { createLocation, locationQuery } = useLocation(locationId);
 
-  const handleClose = (values, isCancelled) => {
+  const handleClose = async (values, isCancelled) => {
     if (isCancelled) {
       setOpen(false);
       return;
@@ -53,7 +57,8 @@ const LocationPage = () => {
       locationId,
     };
 
-    createLocation(locationToSave);
+    await createLocation(locationToSave);
+
     setOpen(false);
   };
 
@@ -67,7 +72,17 @@ const LocationPage = () => {
     <Container>
       {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
-
+      {feedBack && (
+        <Alert
+          sx={{
+            margin: "20px 0",
+            width: "100%",
+          }}
+          severity={feedBack.type}
+        >
+          {feedBack.msg}
+        </Alert>
+      )}
       {weatherData.data && locationQuery.data && (
         <LocationTable
           locationData={
@@ -91,22 +106,8 @@ const LocationPage = () => {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        {img?.docs.length > 0 ? (
-          img.docs.map((item, i) => {
-            const src = item.data();
-
-            return (
-              <CardMedia
-                key={i}
-                sx={{
-                  maxWidth: "500px",
-                }}
-                component="img"
-                alt="green iguana"
-                image={src.url}
-              />
-            );
-          })
+        {img && img?.docs.length > 0 ? (
+          <SpotImage docs={img.docs} />
         ) : (
           <PlaceholderImage locationId={locationId} />
         )}

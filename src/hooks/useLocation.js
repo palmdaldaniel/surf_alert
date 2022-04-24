@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   collection,
@@ -17,8 +18,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 const useLocation = (locationId = null) => {
   const { user } = useAuthContext();
   const [feedBack, setFeedBack] = useState();
-
-  console.log(feedBack);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // clear feedback
@@ -73,10 +73,8 @@ const useLocation = (locationId = null) => {
 
       // when all is good and well
       console.log("doc created, good job 🔥");
-      setFeedBack({
-        type: "success",
-        msg: "Location saved successfully",
-      });
+
+      navigate("/profile");
     } catch (error) {
       console.log("error", error.message);
       setFeedBack({

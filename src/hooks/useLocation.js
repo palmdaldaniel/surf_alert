@@ -43,17 +43,12 @@ const useLocation = (locationId = null) => {
   const createLocation = async (locationValues = null) => {
     if (!locationValues) return;
 
-    const {
-      coords,
-      locationName,
-      windDirection,
-      windSpeed,
-      locationId: uuid,
-    } = locationValues;
+    const { coords, locationName, windDirection, windSpeed, locationId } =
+      locationValues;
 
     try {
       await addDoc(savedLocationsColRef, {
-        locationId: uuid,
+        locationId,
         coordinates: {
           lng: coords.lng,
           lat: coords.lat,
@@ -68,13 +63,33 @@ const useLocation = (locationId = null) => {
 
       // when all is good and well
       console.log("doc created, good job 🔥");
-      // navigate(`/albums/${uuid}`);
     } catch (error) {
       console.log("error", error.message);
     }
   };
 
-  return { locationQuery, createLocation };
+  const updateLocation = async (locationValues = null, docId) => {
+    if (!locationValues) return;
+
+    const { locationName, windDirection, windSpeed } = locationValues;
+
+    try {
+      const locationRef = doc(db, "savedLocations", docId);
+
+      await updateDoc(locationRef, {
+        locationName,
+        edited: serverTimestamp(),
+        prefferedWindDirection: windDirection,
+        prefferedWindSpeed: windSpeed,
+      });
+
+      console.log("updating values");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  return { locationQuery, createLocation, updateLocation };
 };
 
 export default useLocation;

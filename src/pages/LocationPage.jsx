@@ -37,9 +37,13 @@ const LocationPage = () => {
   // handles users data
   const { createLocation, locationQuery } = useLocation(locationId);
 
-  const handleClose = (values) => {
+  const handleClose = (values, isCancelled) => {
+    if (isCancelled) {
+      setOpen(false);
+      return;
+    }
+
     const { locationName, windDirection, windSpeed, locationId } = values;
-    setOpen(false);
 
     const locationToSave = {
       coords,
@@ -50,6 +54,7 @@ const LocationPage = () => {
     };
 
     createLocation(locationToSave);
+    setOpen(false);
   };
 
   // get todays weather
@@ -117,7 +122,7 @@ const LocationPage = () => {
         />
       )}
 
-      <CustomDialog open={open} handleClose={handleClose} />
+      <CustomDialog text="Save" open={open} handleClose={handleClose} />
     </Container>
   );
 };

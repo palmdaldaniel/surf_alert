@@ -11,7 +11,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
             <CardMedia
               key={i}
               sx={{
-                maxWidth: "200px",
+                width: "100%",
               }}
               component="img"
               alt="green iguana"
@@ -24,7 +24,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
       {data.length < 1 && (
         <CardMedia
           sx={{
-            maxWidth: "200px",
+            width: "100%",
           }}
           component="img"
           alt="green iguana"

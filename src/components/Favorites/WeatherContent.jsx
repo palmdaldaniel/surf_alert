@@ -5,14 +5,19 @@ import Typography from "@mui/material/Typography";
 
 import { parseTime, checkDirection, checkWindSpeed } from "../../helpers";
 
-const WeatherContent = ({ data, locationName }) => {
-  const { wind, sys, prefferedWindDirection, prefferedWindSpeed } = data;
+const WeatherContent = ({
+  data,
+  locationName,
+  preferedWindDirection,
+  preferedWindSpeed,
+}) => {
+  const { wind, sys } = data;
 
   const checkWindConditions = (currentConditions) => {
     const { deg, speed } = currentConditions;
 
-    const directionIsGood = checkDirection(deg, prefferedWindDirection);
-    const speedIsGood = checkWindSpeed(speed, prefferedWindSpeed);
+    const directionIsGood = checkDirection(deg, preferedWindDirection);
+    const speedIsGood = checkWindSpeed(speed, preferedWindSpeed);
 
     //const directionIsGood = checkDirection(100, 109);
     //const speedIsGood = checkWindSpeed(15, 10);
@@ -25,7 +30,6 @@ const WeatherContent = ({ data, locationName }) => {
   return (
     <CardContent
       sx={{
-        minHeight: "200px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

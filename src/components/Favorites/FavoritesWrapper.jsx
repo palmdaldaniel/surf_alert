@@ -17,8 +17,6 @@ const FavoritesWrapper = () => {
 
   const favorites = useLocation();
 
-  console.log(favorites);
-
   const collection = useCollection();
   const handleDeleteClick = (action) => {
     if (!action) {

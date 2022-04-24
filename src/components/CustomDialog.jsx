@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 
+// mui
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Slider from "@mui/material/Slider";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
-import { Typography } from "@mui/material";
+
+// components
+import WindDirectionArrow from "./WindDirectionArrow";
 
 const CustomDialog = ({
   open,
@@ -114,19 +115,8 @@ const CustomDialog = ({
               aria-label="Slider"
               onChange={(e) => handleSelectChange(e)}
             />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                margin: "10px",
-                height: "10px",
-                width: "10px",
-                transform: `rotate(${180 + windDirection}deg)`,
-              }}
-            >
-              <span>&#5169;</span>
-            </div>
+
+            <WindDirectionArrow degree={windDirection} />
           </FormControl>
         </DialogContent>
         <DialogActions>

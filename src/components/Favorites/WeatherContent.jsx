@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import { parseTime, checkDirection, checkWindSpeed } from "../../helpers";
+import WindDirectionArrow from "../WindDirectionArrow";
 
 const WeatherContent = ({
   data,
@@ -59,19 +60,7 @@ const WeatherContent = ({
             }}
           >
             Winddirection:
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                margin: "10px",
-                height: "10px",
-                width: "10px",
-                transform: `rotate(${180 + wind.deg}deg)`,
-              }}
-            >
-              <span>&#5169;</span>
-            </div>
+            <WindDirectionArrow degree={wind.deg} />
           </li>
         </ul>
       </Box>

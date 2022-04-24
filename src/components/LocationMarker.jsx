@@ -9,6 +9,7 @@ import useWaterTemp from "../hooks/useWaterTemp";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
 import { stations } from "../helpers/stations";
+import WindDirectionArrow from "./WindDirectionArrow";
 
 const LocationMarker = ({ currentPosition, onLocationPage }) => {
   const [position, setPosition] = useState(currentPosition);
@@ -44,16 +45,6 @@ const LocationMarker = ({ currentPosition, onLocationPage }) => {
     if (geo.sys.country !== "SE")
       return (content = <p>This service is only available in sweden</p>);
 
-    const styles = {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      margin: "10px",
-      height: "10px",
-      width: "10px",
-      transform: `rotate(${180 + geo.wind.deg}deg)`,
-    };
-
     content = (
       <>
         <p>{geo.name}</p>
@@ -65,9 +56,7 @@ const LocationMarker = ({ currentPosition, onLocationPage }) => {
           }}
         >
           Wind direction:
-          <div style={styles}>
-            <span>&#5169;</span>
-          </div>
+          <WindDirectionArrow degree={geo.wind.deg} />
         </div>
         <p>
           {water.parameter.name} {water.parameter.key}

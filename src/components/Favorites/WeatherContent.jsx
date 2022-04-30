@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import { parseTime, checkDirection, checkWindSpeed } from "../../helpers";
 import WindDirectionArrow from "../WindDirectionArrow";
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 const WeatherContent = ({
   data,
@@ -12,10 +13,13 @@ const WeatherContent = ({
   preferedWindDirection,
   preferedWindSpeed,
 }) => {
+  const { updateCounter } = useFavoritesContext();
+
   const { wind, sys } = data;
 
   const checkWindConditions = (currentConditions) => {
     const { deg, speed } = currentConditions;
+    const [itsOn, setItsOn] = useState(false);
 
     const directionIsGood = checkDirection(deg, preferedWindDirection);
     const speedIsGood = checkWindSpeed(speed, preferedWindSpeed);
@@ -23,7 +27,17 @@ const WeatherContent = ({
     //const directionIsGood = checkDirection(100, 109);
     //const speedIsGood = checkWindSpeed(15, 10);
 
+    useEffect(() => {
+      if (itsOn) {
+        updateCounter();
+      }
+    }, [itsOn]);
+
     if (directionIsGood && speedIsGood) {
+      if (!itsOn) {
+        setItsOn(true);
+      }
+
       return "#d1ffc659";
     }
   };

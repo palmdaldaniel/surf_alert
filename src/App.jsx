@@ -16,6 +16,9 @@ import UpdateProfilePage from "./pages/UpdateProfilePage";
 //components
 import IsProtected from "./components/IsProtected";
 
+// contexts
+import FavoritesContextProvider from "./contexts/FavoritesContext";
+
 function App() {
   return (
     <div className="App">
@@ -33,7 +36,9 @@ function App() {
           path="/profile"
           element={
             <IsProtected redirectTo="/login">
-              <ProfilePage />
+              <FavoritesContextProvider>
+                <ProfilePage />
+              </FavoritesContextProvider>
             </IsProtected>
           }
         />

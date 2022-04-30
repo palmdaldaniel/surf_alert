@@ -24,9 +24,6 @@ const WeatherContent = ({
     const directionIsGood = checkDirection(deg, preferedWindDirection);
     const speedIsGood = checkWindSpeed(speed, preferedWindSpeed);
 
-    //const directionIsGood = checkDirection(100, 109);
-    //const speedIsGood = checkWindSpeed(15, 10);
-
     useEffect(() => {
       if (itsOn) {
         updateCounter();

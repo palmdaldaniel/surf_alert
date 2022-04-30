@@ -1,11 +1,3 @@
-/**
- *  profile image upload (remove?)
- *  change name
- *  change password
- *  delete account
- *
- */
-
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -21,6 +13,7 @@ import Alert from "@mui/material/Alert";
 import DropZone from "../components/DropZone";
 import useDoc from "../hooks/useDoc";
 import Avatar from "@mui/material/Avatar";
+import useUploadFiles from "../hooks/useUploadFile";
 
 const UpdateProfilePage = () => {
   const [loading, setLoading] = useState(false);
@@ -28,6 +21,7 @@ const UpdateProfilePage = () => {
   const { user, setEmail, setPassword, setDisplayName } = useAuthContext();
 
   const img = useDoc(null, user.uid);
+  const fileUploader = useUploadFiles();
 
   const [values, handleChange] = useForm(
     {
@@ -96,6 +90,9 @@ const UpdateProfilePage = () => {
         margin: "30px auto",
       }}
     >
+      <Button to="/profile" variant="outlined" as={Link}>
+        Go back
+      </Button>
       <Typography
         align="center"
         sx={{
@@ -131,7 +128,7 @@ const UpdateProfilePage = () => {
             );
           })
         ) : (
-          <DropZone />
+          <DropZone fileUploader={fileUploader} />
         )}
       </Box>
 
@@ -182,8 +179,6 @@ const UpdateProfilePage = () => {
             variant="outlined"
           />
           <Box>
-            {/* should trigger congirmation dialog => "are you sure?" - deleta all info om den personen och dess data? */}
-            <Button>Delete Profile</Button>
             <Button
               variant="contained"
               disabled={loading}

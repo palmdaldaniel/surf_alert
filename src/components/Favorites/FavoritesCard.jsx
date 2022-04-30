@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // mui
@@ -41,9 +41,9 @@ const FavoritesCard = (props) => {
   } = props;
 
   const [locationImg, setLocationImg] = useState();
-  const weatherData = useCoordinates(coordinates);
 
   // hooks
+  const weatherData = useCoordinates(coordinates);
   const { isOpen, closeDialog, openDialog } = useDialog();
   const { menuIsOpen, closeMenu, openMenu, anchorEl } = useMenu();
 

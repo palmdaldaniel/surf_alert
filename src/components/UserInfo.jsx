@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // mui
 import Card from "@mui/material/Card";
@@ -42,7 +43,9 @@ const UserInfo = ({ user }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Edit me</Button>
+          <Button to="/update-profile" as={Link} size="small">
+            Edit me
+          </Button>
         </CardActions>
       </Card>
     </>

@@ -14,21 +14,20 @@ const WeatherContent = ({
   preferedWindSpeed,
 }) => {
   const { updateCounter } = useFavoritesContext();
-
   const { wind, sys } = data;
+  const [itsOn, setItsOn] = useState(false);
+
+  useEffect(() => {
+    if (itsOn) {
+      updateCounter(true);
+    }
+  }, [itsOn]);
 
   const checkWindConditions = (currentConditions) => {
     const { deg, speed } = currentConditions;
-    const [itsOn, setItsOn] = useState(false);
 
     const directionIsGood = checkDirection(deg, preferedWindDirection);
     const speedIsGood = checkWindSpeed(speed, preferedWindSpeed);
-
-    useEffect(() => {
-      if (itsOn) {
-        updateCounter(true);
-      }
-    }, [itsOn]);
 
     if (directionIsGood && speedIsGood) {
       if (!itsOn) {

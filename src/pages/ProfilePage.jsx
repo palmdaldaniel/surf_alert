@@ -20,7 +20,7 @@ const ProfilePage = () => {
           }}
           severety={"success"}
         >
-          {counter} is firing right now 🔥
+          {counter} spot(s) is firing right now 🔥
         </Alert>
       )}
       <UserInfo user={user} />

@@ -26,7 +26,7 @@ const WeatherContent = ({
 
     useEffect(() => {
       if (itsOn) {
-        updateCounter();
+        updateCounter(true);
       }
     }, [itsOn]);
 
@@ -34,7 +34,6 @@ const WeatherContent = ({
       if (!itsOn) {
         setItsOn(true);
       }
-
       return "#d1ffc659";
     }
   };

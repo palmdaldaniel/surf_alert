@@ -10,7 +10,6 @@ import FavoritesCard from "./FavoritesCard";
 import useLocation from "../../hooks/useLocation";
 import DeleteDialog from "../DeleteDialog";
 import useCollection from "../../hooks/useCollection";
-import { useQueryClient } from "react-query";
 
 const FavoritesWrapper = () => {
   const [locationToBeDeleted, setLocationToBeDelete] = useState();

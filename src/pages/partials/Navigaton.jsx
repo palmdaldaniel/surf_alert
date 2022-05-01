@@ -60,6 +60,11 @@ const ResponsiveAppBar = () => {
               open={isOpen}
               onClose={toggleDrawer}
             >
+              <MenuItem>
+                <Typography as={Link} to="/" textAlign="center">
+                  Surf Alert
+                </Typography>
+              </MenuItem>
               {user && (
                 <Box onClick={toggleDrawer} sx={{ width: 250 }}>
                   <MenuItem>
@@ -95,6 +100,17 @@ const ResponsiveAppBar = () => {
           {/* Navigation for hamburger menu end */}
 
           {/* Navigation for normal menu start */}
+
+          <Button
+            sx={{
+              display: { xs: "none", md: "block" },
+              my: 2,
+              color: "white",
+            }}
+          >
+            <Link to="/">Surf Alert</Link>
+          </Button>
+
           <Box
             sx={{
               flexGrow: 1,

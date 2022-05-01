@@ -38,7 +38,6 @@ const WeatherContent = ({
   };
 
   useEffect(() => {
-    console.log("firing function");
     checkWindConditions(wind);
   }, [preferedWindDirection, preferedWindSpeed]);
 
@@ -66,14 +65,16 @@ const WeatherContent = ({
           <li>Sunrise: {parseTime(sys.sunrise)}</li>
           <li>Sunset: {parseTime(sys.sunset)}</li>
           <li>WindSpeed {wind.speed} m/s</li>
-          <li
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            Winddirection:
-            <WindDirectionArrow degree={wind.deg} />
+          <li>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              Winddirection:
+              <WindDirectionArrow degree={wind.deg} />
+            </Box>
           </li>
         </ul>
       </Box>

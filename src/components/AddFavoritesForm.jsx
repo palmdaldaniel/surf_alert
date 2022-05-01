@@ -66,7 +66,6 @@ const AddFavoritesForm = () => {
     const locations = isCreating ? checked : undefined;
 
     if (!locations) {
-      console.log("navigate to homepage");
       navigate("/");
       return;
     }
@@ -88,7 +87,7 @@ const AddFavoritesForm = () => {
       createLocation(locationValues);
     });
     console.log("give me some favorites pls 🔥");
-    navigate("/profile");
+    navigate("/");
   };
 
   return (

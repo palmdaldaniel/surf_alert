@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import CustomDialog from "../components/CustomDialog";
 
 import useDoc from "../hooks/useDoc";
+import useDialog from "../hooks/useDialog";
 
 import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
 import LeafletMap from "../components/LeafletMap";
@@ -23,13 +24,13 @@ const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
 
   const { createLocation, locationQuery, feedBack } = useLocation(locationId);
+  const { isOpen, openDialog, closeDialog } = useDialog();
 
-  const alowImgRequest = locationId ? false : true;
+  const allowImgRequest = locationId ? false : true;
 
-  const img = useDoc(locationId, undefined, alowImgRequest);
+  const img = useDoc(locationId, undefined, allowImgRequest);
 
   const [coords, setCoords] = useState(null);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const parsedToCoords = parseToCoordinates({ lat, lng });
@@ -37,13 +38,11 @@ const LocationPage = () => {
     setCoords(parsedToCoords);
   }, []);
 
-  const handleClickOpen = () => setOpen(true);
-
   // handles users data
 
   const handleClose = async (values, isCancelled) => {
     if (isCancelled) {
-      setOpen(false);
+      closeDialog();
       return;
     }
 
@@ -59,7 +58,7 @@ const LocationPage = () => {
 
     await createLocation(locationToSave);
 
-    setOpen(false);
+    closeDialog();
   };
 
   // get todays weather
@@ -85,7 +84,7 @@ const LocationPage = () => {
               margin: "10px 0 ",
             }}
             variant="contained"
-            onClick={handleClickOpen}
+            onClick={openDialog}
           >
             Save this location
           </Button>
@@ -138,7 +137,7 @@ const LocationPage = () => {
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
       </Box>
 
-      <CustomDialog text="Save" open={open} handleClose={handleClose} />
+      <CustomDialog text="Save" open={isOpen} handleClose={handleClose} />
     </Container>
   );
 };

@@ -28,7 +28,7 @@ const CustomDialog = ({
 }) => {
   const [windSpeed, setWindSpeed] = useState(speed ? speed : 15);
   const [windDirection, setWindDirection] = useState(
-    direction ? direction : 15
+    direction ? direction : 180
   );
 
   const [locationName, setLocationName] = useState(spotName ? spotName : "");
@@ -63,7 +63,7 @@ const CustomDialog = ({
           </DialogContentText>
           <Box
             sx={{
-              margin: "30px",
+              margin: "10px 0 40px 0",
             }}
           >
             <TextField
@@ -78,37 +78,40 @@ const CustomDialog = ({
               onChange={(e) => handleInputChange(e)}
             />
           </Box>
+
+          <Box>
+            <Typography>Wind Speed</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Slider
+                sx={{
+                  width: "300px",
+                }}
+                max={30}
+                value={windSpeed}
+                aria-label="Slider"
+                onChange={(e) => handleChange(e)}
+              />
+              <Typography variant="body1">{windSpeed}m/s</Typography>
+            </Box>
+          </Box>
+
+          <Typography>Wind Direction</Typography>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-evenly",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
-            <Typography>Wind Speed</Typography>
             <Slider
               sx={{
-                flex: 0.5,
-              }}
-              max={30}
-              value={windSpeed}
-              aria-label="Slider"
-              onChange={(e) => handleChange(e)}
-            />
-            <p>{windSpeed}m/s</p>
-          </Box>
-
-          <FormControl
-            fullWidth
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <Typography>Wind Direction</Typography>
-            <Slider
-              sx={{
-                flex: 0.5,
+                width: "300px",
               }}
               max={360}
               value={windDirection}
@@ -117,7 +120,7 @@ const CustomDialog = ({
             />
 
             <WindDirectionArrow degree={windDirection} />
-          </FormControl>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleClose(undefined, true)}>Cancel</Button>

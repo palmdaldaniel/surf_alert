@@ -8,7 +8,7 @@ import useWaterTemp from "../hooks/useWaterTemp";
 import { parseTime } from "../helpers";
 import WindDirectionArrow from "./WindDirectionArrow";
 
-export default function Aside({ weatherData, stationId, locationName }) {
+export default function WetherList({ weatherData, stationId, locationName }) {
   const { name, sys, wind, main } = weatherData;
 
   const temp = useWaterTemp(stationId);

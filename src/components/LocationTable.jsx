@@ -1,6 +1,4 @@
-import Container from "@mui/material/Container";
-
-import Aside from "./Aside";
+import WetherList from "./WetherList";
 
 import { stations } from "../helpers/stations";
 import { useEffect, useState } from "react";
@@ -24,16 +22,10 @@ export default function BasicTable({ weatherData, locationData }) {
   }, []);
 
   return (
-    <Container
-      sx={{
-        marginTop: "20px",
-      }}
-    >
-      <Aside
-        weatherData={weatherData}
-        locationName={locationData ? locationData[0].locationName : undefined}
-        stationId={station}
-      />
-    </Container>
+    <WetherList
+      weatherData={weatherData}
+      locationName={locationData ? locationData[0].locationName : undefined}
+      stationId={station}
+    />
   );
 }

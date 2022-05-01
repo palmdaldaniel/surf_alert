@@ -72,6 +72,16 @@ const LocationPage = () => {
     <Container>
       {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
+
+      {weatherData.data && locationQuery.data && (
+        <LocationTable
+          locationData={
+            locationQuery.data.length === 1 ? locationQuery.data : undefined
+          }
+          weatherData={weatherData.data}
+        />
+      )}
+
       {feedBack && (
         <Alert
           sx={{
@@ -83,27 +93,11 @@ const LocationPage = () => {
           {feedBack.msg}
         </Alert>
       )}
-      {weatherData.data && locationQuery.data && (
-        <LocationTable
-          locationData={
-            locationQuery.data.length === 1 ? locationQuery.data : undefined
-          }
-          weatherData={weatherData.data}
-        />
-      )}
-
-      {/* only render if this location is not saved as a favorite */}
-      {!locationId && (
-        <Button variant="contained" onClick={handleClickOpen}>
-          Save this location
-        </Button>
-      )}
 
       <Box
         sx={{
-          minWidth: "300px",
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: "column",
         }}
       >
         {img && img?.docs.length > 0 ? (
@@ -111,17 +105,35 @@ const LocationPage = () => {
         ) : (
           <PlaceholderImage locationId={locationId} />
         )}
+        {/* only render if this location is not saved as a favorite */}
+        {!locationId && (
+          <Button
+            sx={{
+              alignSelf: "flex-end",
+            }}
+            variant="contained"
+            onClick={handleClickOpen}
+          >
+            Save this location
+          </Button>
+        )}
+      </Box>
 
+      <Box
+        sx={{
+          display: { sm: "flex" },
+        }}
+      >
+        {coords && (
+          <LeafletMap
+            onLocationPage
+            coords={coords}
+            locationId={locationId}
+            height={{ height: "300px" }}
+          />
+        )}
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
       </Box>
-      {coords && (
-        <LeafletMap
-          onLocationPage
-          coords={coords}
-          locationId={locationId}
-          height={{ height: "500px" }}
-        />
-      )}
 
       <CustomDialog text="Save" open={open} handleClose={handleClose} />
     </Container>

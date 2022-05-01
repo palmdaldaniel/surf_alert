@@ -26,17 +26,15 @@ const PlaceHolderImage = ({ locationId }) => {
       <div
         onClick={locationId && openDialog}
         className={locationId ? "placeholder-wrapper" : ""}
-        style={{
-          maxWidth: "500px",
-        }}
       >
         <CardMedia
           sx={{
             width: "100%",
+            margin: "10px 0",
           }}
           component="img"
           alt="placeholder image"
-          image={"http://placehold.jp/500x300.png"}
+          image={"http://placehold.jp/700x200.png"}
         />
         {locationId && <FileUploadIcon fontSize="large" />}
       </div>

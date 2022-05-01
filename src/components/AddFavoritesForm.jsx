@@ -141,6 +141,7 @@ const AddFavoritesForm = () => {
         }}
       >
         <Button
+          onClick={() => navigate("/")}
           sx={{
             marginRight: 3,
           }}

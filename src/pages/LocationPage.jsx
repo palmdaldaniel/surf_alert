@@ -72,6 +72,25 @@ const LocationPage = () => {
     <Container>
       {weatherData.isError && <p>No weather data for you :(</p>}
       {weatherData.isLoading && <p>Loading weatherData</p>}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
+        {!locationId && (
+          <Button
+            sx={{
+              alignSelf: "flex-end",
+              margin: "10px 0 ",
+            }}
+            variant="contained"
+            onClick={handleClickOpen}
+          >
+            Save this location
+          </Button>
+        )}
+      </Box>
 
       {weatherData.data && locationQuery.data && (
         <LocationTable
@@ -94,29 +113,13 @@ const LocationPage = () => {
         </Alert>
       )}
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <Box>
         {img && img?.docs.length > 0 ? (
           <SpotImage docs={img.docs} />
         ) : (
           <PlaceholderImage locationId={locationId} />
         )}
         {/* only render if this location is not saved as a favorite */}
-        {!locationId && (
-          <Button
-            sx={{
-              alignSelf: "flex-end",
-            }}
-            variant="contained"
-            onClick={handleClickOpen}
-          >
-            Save this location
-          </Button>
-        )}
       </Box>
 
       <Box

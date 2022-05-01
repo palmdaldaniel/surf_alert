@@ -10,6 +10,7 @@ const SpotImage = ({ docs }) => {
         margin: "10px 0",
         width: "100%",
         maxHeight: "300px",
+        objectFit: "contain",
       }}
       component="img"
       alt="green iguana"

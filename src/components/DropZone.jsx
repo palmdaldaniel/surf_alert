@@ -7,6 +7,8 @@ import {
   rejectStyle,
 } from "../utils/DropZoneStyles";
 
+import Box from "@mui/system/Box";
+
 import CustomProgress from "./CustomProgress";
 
 const DropZone = ({ locationId, fileUploader }) => {
@@ -46,7 +48,14 @@ const DropZone = ({ locationId, fileUploader }) => {
           )}
         </div>
       ) : (
-        <CustomProgress value={fileUploader.progress} />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CustomProgress value={fileUploader.progress} />
+        </Box>
       )}
     </>
   );

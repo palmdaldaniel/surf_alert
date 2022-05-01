@@ -8,6 +8,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
     <CardMedia
       sx={{
         width: "100%",
+        height: "200px",
       }}
       component="img"
       alt="green iguana"
@@ -18,6 +19,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
     <CardMedia
       sx={{
         width: "100%",
+        height: "200px",
       }}
       component="img"
       alt="green iguana"

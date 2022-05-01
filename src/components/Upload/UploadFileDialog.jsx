@@ -15,7 +15,13 @@ const UploadFileDialog = ({
   fileUploader,
 }) => {
   return (
-    <Dialog open={isOpen} onClose={handleClose}>
+    <Dialog
+      sx={{
+        minWidth: "416px",
+      }}
+      open={isOpen}
+      onClose={handleClose}
+    >
       {fileUploader.message && (
         <Alert severety={fileUploader.message.type}>
           {fileUploader.message.msg}

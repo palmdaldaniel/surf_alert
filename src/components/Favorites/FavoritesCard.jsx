@@ -41,6 +41,7 @@ const FavoritesCard = (props) => {
   } = props;
 
   const [locationImg, setLocationImg] = useState();
+  const [itsOn, setItsOn] = useState(false);
 
   // hooks
   const weatherData = useCoordinates(coordinates);
@@ -82,6 +83,7 @@ const FavoritesCard = (props) => {
           maxWidth: 345,
           height: 400,
           justifyContent: "space-between",
+          backgroundColor: itsOn && "#d1ffc659",
         }}
       >
         {img && (
@@ -94,6 +96,8 @@ const FavoritesCard = (props) => {
             locationName={locationName}
             preferedWindDirection={prefferedWindDirection}
             preferedWindSpeed={prefferedWindSpeed}
+            setItsOn={setItsOn}
+            itsOn={itsOn}
           />
         )}
         <Button

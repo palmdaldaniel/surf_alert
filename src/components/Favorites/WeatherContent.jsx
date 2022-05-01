@@ -12,10 +12,11 @@ const WeatherContent = ({
   locationName,
   preferedWindDirection,
   preferedWindSpeed,
+  setItsOn,
+  itsOn,
 }) => {
   const { updateCounter } = useFavoritesContext();
   const { wind, sys } = data;
-  const [itsOn, setItsOn] = useState(false);
 
   useEffect(() => {
     if (itsOn) {
@@ -33,9 +34,13 @@ const WeatherContent = ({
       if (!itsOn) {
         setItsOn(true);
       }
-      return "#d1ffc659";
     }
   };
+
+  useEffect(() => {
+    console.log("firing function");
+    checkWindConditions(wind);
+  }, [preferedWindDirection, preferedWindSpeed]);
 
   return (
     <CardContent
@@ -44,7 +49,6 @@ const WeatherContent = ({
         flexDirection: "column",
         justifyContent: "space-between",
         width: "100%",
-        backgroundColor: checkWindConditions(wind),
       }}
     >
       <Box

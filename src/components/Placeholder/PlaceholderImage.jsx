@@ -40,7 +40,7 @@ const PlaceHolderImage = ({ locationId }) => {
       </div>
       <UploadFileDialog
         fileUploader={fileUploader}
-        isOpen={isOpen}
+        isOpen={true}
         text="image"
         locationId={locationId}
         handleClose={closeDialog}

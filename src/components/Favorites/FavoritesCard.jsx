@@ -75,7 +75,14 @@ const FavoritesCard = (props) => {
   return (
     <>
       <Card
-        sx={{ display: "flex", flexDirection: "column", position: "relative" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          maxWidth: 345,
+          height: 400,
+          justifyContent: "space-between",
+        }}
       >
         {img && (
           <CardImageWrapper data={img.docs} finishedLoading={finishedLoading} />
@@ -93,7 +100,7 @@ const FavoritesCard = (props) => {
           variant="contained"
           onClick={handleClick}
           sx={{
-            pl: 0,
+            margin: "5px",
           }}
           size="small"
         >
@@ -102,7 +109,7 @@ const FavoritesCard = (props) => {
 
         <Button
           sx={{
-            height: "50px",
+            height: "40px",
             position: "absolute",
             right: 0,
           }}

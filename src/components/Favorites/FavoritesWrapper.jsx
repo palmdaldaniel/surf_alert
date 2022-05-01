@@ -45,7 +45,11 @@ const FavoritesWrapper = () => {
   };
 
   return (
-    <Container>
+    <Container
+      sx={{
+        width: { xs: "350px", sm: "700px", md: "1200px" },
+      }}
+    >
       {favorites.feedBack && (
         <Alert
           sx={{
@@ -57,12 +61,16 @@ const FavoritesWrapper = () => {
           {favorites.feedBack.msg}
         </Alert>
       )}
-      <Box sx={{ flexGrow: 1 }}>
+      <Box
+        sx={{
+          margin: "20px 0",
+        }}
+      >
         <Grid container spacing={2}>
           {favorites.locationQuery.data &&
           favorites.locationQuery.data.length > 0 ? (
             favorites.locationQuery.data.map((item, i) => (
-              <Grid key={item._id} item xs={12} md={6}>
+              <Grid key={item._id} item xs={12} sm={6} md={4}>
                 <FavoritesCard
                   handleUpdateRequest={handleUpdateRequest}
                   deleteClick={openDialog}

@@ -14,7 +14,7 @@ import OnboardPage from "./pages/OnboardPage";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
 
 //components
-import IsProtected from "./components/IsProtected";
+import IsProtected from "./components/Utils/IsProtected";
 
 // contexts
 import FavoritesContextProvider from "./contexts/FavoritesContext";

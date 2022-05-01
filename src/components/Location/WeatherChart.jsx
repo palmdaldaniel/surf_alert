@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { parseForecast } from "../helpers";
+import { parseForecast } from "../../helpers";
 
 import {
   BarChart,
@@ -9,7 +9,6 @@ import {
   CartesianGrid,
   Legend,
   ResponsiveContainer,
-  LabelList,
 } from "recharts";
 import { Box } from "@mui/material";
 

@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
+// mui
 import Box from "@mui/material/Box";
-
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 
+// components
 import FavoritesCard from "./FavoritesCard";
+import DeleteDialog from "../Dialog/DeleteDialog";
+
+// hooks
 import useLocation from "../../hooks/useLocation";
-import DeleteDialog from "../DeleteDialog";
 import useCollection from "../../hooks/useCollection";
 
 const FavoritesWrapper = () => {

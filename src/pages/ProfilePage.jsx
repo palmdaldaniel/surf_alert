@@ -1,4 +1,4 @@
-import UserInfo from "../components/UserInfo";
+import UserInfo from "../components/User/UserInfo";
 import FavoritesWrapper from "../components/Favorites/FavoritesWrapper";
 
 import { useAuthContext } from "../contexts/AuthContext";

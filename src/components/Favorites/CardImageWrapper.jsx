@@ -11,7 +11,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
         height: "200px",
       }}
       component="img"
-      alt="green iguana"
+      alt="Surf Location"
       image={src.url}
       onLoad={() => finishedLoading(src)}
     />
@@ -22,7 +22,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
         height: "200px",
       }}
       component="img"
-      alt="green iguana"
+      alt="Placeholder"
       image={"http://placehold.jp/300x170.png"}
     />
   );

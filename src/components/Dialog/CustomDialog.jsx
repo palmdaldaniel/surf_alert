@@ -8,14 +8,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import FormControl from "@mui/material/FormControl";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
 
 // components
-import WindDirectionArrow from "./WindDirectionArrow";
+import WindDirectionArrow from "../Utils/WindDirectionArrow";
 
 const CustomDialog = ({
   open,

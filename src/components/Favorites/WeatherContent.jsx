@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import { parseTime, checkDirection, checkWindSpeed } from "../../helpers";
-import WindDirectionArrow from "../WindDirectionArrow";
+import WindDirectionArrow from "../Utils/WindDirectionArrow";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 const WeatherContent = ({

@@ -4,10 +4,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
 
-import useWaterTemp from "../hooks/useWaterTemp";
+import useWaterTemp from "../../hooks/useWaterTemp";
 
-import { parseTime } from "../helpers";
-import WindDirectionArrow from "./WindDirectionArrow";
+import { parseTime } from "../../helpers";
+import WindDirectionArrow from "../Utils/WindDirectionArrow";
+
+// row setup
 const xs = 6;
 const sm = 4;
 const md = 3;

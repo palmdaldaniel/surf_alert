@@ -3,7 +3,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -12,8 +11,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Switch from "@mui/material/Switch";
 
-import { useAuthContext } from "../contexts/AuthContext";
-import useLocation from "../hooks/useLocation";
+import { useAuthContext } from "../../contexts/AuthContext";
+import useLocation from "../../hooks/useLocation";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 

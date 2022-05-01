@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
+//map
 import { Icon } from "leaflet";
 import { useMapEvent, Marker, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
-import useCoordinates from "../hooks/useCoordinates";
-import { getWindDirection, parseToUrl } from "../helpers";
-import { calcNearest } from "../helpers/CalcDistance";
-import useWaterTemp from "../hooks/useWaterTemp";
-import { Link as RouterLink } from "react-router-dom";
+
+// hooks
+import useCoordinates from "../../hooks/useCoordinates";
+import useWaterTemp from "../../hooks/useWaterTemp";
+
+// helpers
+import { parseToUrl } from "../../helpers";
+import { calcNearest } from "../../helpers/CalcDistance";
+import { stations } from "../../helpers/stations";
+
+// mui
 import Link from "@mui/material/Link";
-import { stations } from "../helpers/stations";
-import WindDirectionArrow from "./WindDirectionArrow";
+
+// components
+import WindDirectionArrow from "../Utils/WindDirectionArrow";
 
 const LocationMarker = ({ currentPosition, onLocationPage }) => {
   const [position, setPosition] = useState(currentPosition);

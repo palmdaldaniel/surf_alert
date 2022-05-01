@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import { MapContainer, TileLayer, Popup } from "react-leaflet";
-import { mapboxConfig } from "../mapbox";
+import { MapContainer, TileLayer } from "react-leaflet";
+import { mapboxConfig } from "../../mapbox";
 import LocationMarker from "./LocationMarker";
 
 import "leaflet/dist/leaflet.css";

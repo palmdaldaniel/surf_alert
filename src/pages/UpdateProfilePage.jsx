@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
@@ -10,10 +10,12 @@ import Box from "@mui/material/Box";
 
 import useForm from "../hooks/useForm";
 import Alert from "@mui/material/Alert";
-import DropZone from "../components/DropZone";
+import DropZone from "../components/Upload/DropZone";
 import useDoc from "../hooks/useDoc";
-import Avatar from "@mui/material/Avatar";
+
 import useUploadFiles from "../hooks/useUploadFile";
+import { useQueryClient } from "react-query";
+import UserAvatar from "../components/User/UserAvatar";
 
 const UpdateProfilePage = () => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +24,14 @@ const UpdateProfilePage = () => {
 
   const img = useDoc(null, user.uid);
   const fileUploader = useUploadFiles();
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (fileUploader.progress === 100) {
+      queryClient.invalidateQueries("images");
+    }
+  }, [fileUploader.progress]);
 
   const [values, handleChange] = useForm(
     {
@@ -116,17 +126,7 @@ const UpdateProfilePage = () => {
       >
         {/* Update a profileimage if you like */}
         {img && img?.docs.length > 0 ? (
-          img.docs.map((item, i) => {
-            const src = item.data();
-            return (
-              <Avatar
-                key={i}
-                alt="profile image"
-                src={src.url}
-                sx={{ width: 100, height: 100, m: "10px auto" }}
-              />
-            );
-          })
+          <UserAvatar docs={img.docs} />
         ) : (
           <DropZone fileUploader={fileUploader} />
         )}

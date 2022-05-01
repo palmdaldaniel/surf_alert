@@ -4,7 +4,7 @@ import React from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 //components
-import LeafletMap from "../components/LeafletMap";
+import LeafletMap from "../components/Map/LeafletMap";
 
 const LocationsPage = () => {
   return (

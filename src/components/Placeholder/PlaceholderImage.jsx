@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CardMedia from "@mui/material/CardMedia";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import UploadFileDialog from "../Upload/UploadFileDialog.jsx";
+import UploadFileDialog from "../Dialog/UploadFileDialog.jsx";
 import useDialog from "../../hooks/useDialog.js";
 import useUploadFile from "../../hooks/useUploadFile.js";
 

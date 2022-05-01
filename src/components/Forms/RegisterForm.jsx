@@ -8,9 +8,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Alert from "@mui/material/Alert";
 
 //Hooks
-import useRegisterUser from "../hooks/useRegisterUser";
-import useToggle from "../hooks/useToggle";
-import useForm from "../hooks/useForm";
+import useRegisterUser from "../../hooks/useRegisterUser";
+import useToggle from "../../hooks/useToggle";
+import useForm from "../../hooks/useForm";
 
 const RegisterForm = () => {
   const [values, handleChange, resetForm] = useForm({

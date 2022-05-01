@@ -26,7 +26,7 @@ import useCoordinates from "../../hooks/useCoordinates";
 import useDoc from "../../hooks/useDoc";
 import useDialog from "../../hooks/useDialog";
 import useMenu from "../../hooks/useMenu";
-import CustomDialog from "../CustomDialog";
+import CustomDialog from "../Dialog/CustomDialog";
 
 const FavoritesCard = (props) => {
   const {

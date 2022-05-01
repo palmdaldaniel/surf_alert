@@ -5,11 +5,11 @@ import {
   activeStyle,
   acceptStyle,
   rejectStyle,
-} from "../utils/DropZoneStyles";
+} from "../../utils/DropZoneStyles";
 
 import Box from "@mui/system/Box";
 
-import CustomProgress from "./CustomProgress";
+import CustomProgress from "../Utils/CustomProgress";
 
 const DropZone = ({ locationId, fileUploader }) => {
   const onDrop = useCallback((acceptedFiles) => {

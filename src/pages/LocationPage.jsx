@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useCoordinates from "../hooks/useCoordinates";
-import LocationTable from "../components/LocationTable";
+
+import LocationTable from "../components/Location/LocationTable";
 import Container from "@mui/material/Container";
-import WeatherChart from "../components/WeatherChart";
+import WeatherChart from "../components/Location/WeatherChart";
 import { parseToCoordinates } from "../helpers";
 import useForecast from "../hooks/useForecast";
 import useLocation from "../hooks/useLocation";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-import CustomDialog from "../components/CustomDialog";
+import CustomDialog from "../components/Dialog/CustomDialog";
 
 import useDoc from "../hooks/useDoc";
 import useDialog from "../hooks/useDialog";
 
 import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
-import LeafletMap from "../components/LeafletMap";
+import LeafletMap from "../components/Map/LeafletMap";
+
 import Alert from "@mui/material/Alert";
 import SpotImage from "../components/Image/SpotImage";
 

@@ -71,9 +71,6 @@ const LocationPage = () => {
   // get todays weather
   const weatherData = useCoordinates(coords);
 
-  console.log({ locationQuery });
-  console.log({ weatherData });
-
   // get forecast for the next 7 days
   const forecast = useForecast(coords);
 

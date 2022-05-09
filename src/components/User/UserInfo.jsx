@@ -28,7 +28,7 @@ const UserInfo = ({ user }) => {
             justifyContent: "center",
           }}
         >
-          <SkeletonBox height={230} width={400} />
+          <SkeletonBox mt="10px" height={230} width={400} />
         </Box>
       ) : (
         <Card sx={{ maxWidth: 400, m: "10px auto" }}>

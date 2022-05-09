@@ -1,20 +1,6 @@
 import React from "react";
 import Skeleton from "@mui/material/Skeleton";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-
-const skeletonItems = [
-  {
-    variant: "rectangular",
-    width: "50%",
-    height: 200,
-  },
-  {
-    variant: "rectangular",
-    width: "80%",
-    height: 30,
-  },
-];
 
 const SkeletonPage = () => {
   return (
@@ -23,7 +9,7 @@ const SkeletonPage = () => {
         animation="wave"
         variant="rectangular"
         width="100%"
-        height={60}
+        height={70}
         sx={{ marginBottom: "10px" }}
       />
       <Container className="skeleton-wrapper" maxWidth="lg">
@@ -40,8 +26,7 @@ const SkeletonPage = () => {
             variant="rectangular"
             width="100%"
             height={200}
-            sx={{ marginBottom: "10px",  display: { xs: "none", md: "block" }, }}
-            
+            sx={{ marginBottom: "10px", display: { xs: "none", md: "block" } }}
           />
           <div className="skeleton-wrapper-content-text">
             <Skeleton
@@ -72,8 +57,8 @@ const SkeletonPage = () => {
             width="100%"
             height={200}
             sx={{ marginBottom: "10px" }}
-          />  
-           <div className="skeleton-wrapper-content-text">
+          />
+          <div className="skeleton-wrapper-content-text">
             <Skeleton
               animation="wave"
               sx={{ marginBottom: "10px" }}
@@ -96,7 +81,6 @@ const SkeletonPage = () => {
               height={30}
             />
           </div>
-            
         </div>
       </Container>
     </>

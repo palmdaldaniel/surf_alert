@@ -21,6 +21,7 @@ import LocationTable from "../components/Location/LocationTable";
 import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
 import SpotImage from "../components/Image/SpotImage";
 import WeatherChart from "../components/Location/WeatherChart";
+import SkeletonPage from "./SkeletonPage";
 
 // helpers
 import { parseToCoordinates } from "../helpers";
@@ -73,73 +74,91 @@ const LocationPage = () => {
 
   return (
     <Container>
-      {weatherData.isError && <p>No weather data for you :(</p>}
-      {weatherData.isLoading && <p>Loading weather data</p>}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
-        {!locationId && (
-          <Button
+      {weatherData.isError ||
+        (forecast.isError && <p>No weather data for you :(</p>)}
+
+      {/* wait for data to be loaded */}
+
+      {weatherData.isLoading || forecast.isLoading ? (
+        <SkeletonPage />
+      ) : (
+        <Box>
+          <Box
             sx={{
-              alignSelf: "flex-end",
-              margin: "10px 0 ",
+              display: "flex",
+              justifyContent: "flex-end",
             }}
-            variant="contained"
-            onClick={openDialog}
           >
-            Save this location
-          </Button>
-        )}
-      </Box>
+            {!locationId && (
+              <Button
+                sx={{
+                  alignSelf: "flex-end",
+                  margin: "10px 0 ",
+                }}
+                variant="contained"
+                onClick={openDialog}
+              >
+                Save this location
+              </Button>
+            )}
+          </Box>
 
-      {weatherData.data && locationQuery.data && (
-        <LocationTable
-          locationData={
-            locationQuery.data.length === 1 ? locationQuery.data : undefined
-          }
-          weatherData={weatherData.data}
-        />
+          <Box
+            sx={{
+              minHeight: 138,
+            }}
+          >
+            {weatherData.data && locationQuery.data && (
+              <LocationTable
+                locationData={
+                  locationQuery.data.length === 1
+                    ? locationQuery.data
+                    : undefined
+                }
+                weatherData={weatherData.data}
+              />
+            )}
+          </Box>
+
+          {feedBack && (
+            <Alert
+              sx={{
+                margin: "20px 0",
+                width: "100%",
+              }}
+              severity={feedBack.type}
+            >
+              {feedBack.msg}
+            </Alert>
+          )}
+
+          <Box>
+            {img && img?.docs.length > 0 ? (
+              <SpotImage docs={img.docs} />
+            ) : (
+              <PlaceholderImage locationId={locationId} />
+            )}
+          </Box>
+
+          <Box
+            sx={{
+              display: { sm: "flex" },
+            }}
+          >
+            {coords && (
+              <LeafletMap
+                onLocationPage
+                coords={coords}
+                locationId={locationId}
+                height={{ height: "300px" }}
+              />
+            )}
+            {forecast.data && (
+              <WeatherChart forecastData={forecast.data.daily} />
+            )}
+          </Box>
+        </Box>
       )}
-
-      {feedBack && (
-        <Alert
-          sx={{
-            margin: "20px 0",
-            width: "100%",
-          }}
-          severity={feedBack.type}
-        >
-          {feedBack.msg}
-        </Alert>
-      )}
-
-      <Box>
-        {img && img?.docs.length > 0 ? (
-          <SpotImage docs={img.docs} />
-        ) : (
-          <PlaceholderImage locationId={locationId} />
-        )}
-        {/* only render if this location is not saved as a favorite */}
-      </Box>
-
-      <Box
-        sx={{
-          display: { sm: "flex" },
-        }}
-      >
-        {coords && (
-          <LeafletMap
-            onLocationPage
-            coords={coords}
-            locationId={locationId}
-            height={{ height: "300px" }}
-          />
-        )}
-        {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
-      </Box>
 
       {weatherData.data && (
         <CustomDialog

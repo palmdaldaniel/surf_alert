@@ -81,7 +81,6 @@ const FavoritesCard = (props) => {
           flexDirection: "column",
           position: "relative",
           maxWidth: 345,
-          height: 400,
           justifyContent: "space-between",
           backgroundColor: itsOn && "#d1ffc659",
         }}

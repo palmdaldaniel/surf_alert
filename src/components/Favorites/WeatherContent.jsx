@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+
+// mui
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import WindPowerIcon from "@mui/icons-material/WindPower";
+import ExploreIcon from "@mui/icons-material/Explore";
 
+// helpers
 import { parseTime, checkDirection, checkWindSpeed } from "../../helpers";
-import WindDirectionArrow from "../Utils/WindDirectionArrow";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
+
+// components
+import WindDirectionArrow from "../Utils/WindDirectionArrow";
 
 const WeatherContent = ({
   data,
@@ -57,26 +69,44 @@ const WeatherContent = ({
           ml: "20px",
         }}
       >
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {locationName}
         </Typography>
 
-        <ul>
-          <li>Sunrise: {parseTime(sys.sunrise)}</li>
-          <li>Sunset: {parseTime(sys.sunset)}</li>
-          <li>WindSpeed {wind.speed} m/s</li>
-          <li>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Winddirection:
-              <WindDirectionArrow degree={wind.deg} />
-            </Box>
-          </li>
-        </ul>
+        <List
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box component="div">
+            <ListItem>
+              <WbSunnyIcon sx={{ mr: 2 }} />
+              <ListItemText primary={parseTime(sys.sunrise)} />
+            </ListItem>
+            <ListItem>
+              <DarkModeIcon sx={{ mr: 2 }} />
+              <ListItemText primary={parseTime(sys.sunset)} />
+            </ListItem>
+          </Box>
+          <Box component="div">
+            <ListItem>
+              <WindPowerIcon sx={{ mr: 2 }} />
+              <ListItemText primary={wind.speed + "ms/s"} />
+            </ListItem>
+            <ListItem>
+              <ExploreIcon sx={{ mr: 2 }} />
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <WindDirectionArrow degree={wind.deg} />
+              </Box>
+            </ListItem>
+          </Box>
+        </List>
       </Box>
     </CardContent>
   );

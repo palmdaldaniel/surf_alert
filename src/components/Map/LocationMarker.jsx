@@ -69,7 +69,7 @@ const LocationMarker = ({ currentPosition, onLocationPage }) => {
           <WindDirectionArrow degree={geo.wind.deg} />
         </div>
         <p>
-          {water.parameter.name} {water.parameter.key}
+          Sea temperature: {water.value[0].value}
           {water.parameter.unit}
         </p>
         {coordUrl && (

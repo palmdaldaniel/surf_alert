@@ -21,15 +21,16 @@ import LocationTable from "../components/Location/LocationTable";
 import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
 import SpotImage from "../components/Image/SpotImage";
 import WeatherChart from "../components/Location/WeatherChart";
-import SkeletonPage from "./SkeletonPage";
 
 // helpers
 import { parseToCoordinates } from "../helpers";
+import useStations from "../hooks/useStations";
 
 const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if not saved as favorite
 
   const { createLocation, locationQuery, feedBack } = useLocation(locationId);
+  const stations = useStations();
   const { isOpen, openDialog, closeDialog } = useDialog();
 
   const allowImgRequest = locationId ? false : true;
@@ -105,12 +106,13 @@ const LocationPage = () => {
             minHeight: 112,
           }}
         >
-          {weatherData.data && locationQuery.data && (
+          {weatherData.data && locationQuery.data && stations.data && (
             <LocationTable
               locationData={
                 locationQuery.data.length === 1 ? locationQuery.data : undefined
               }
               weatherData={weatherData.data}
+              stations={stations.data}
             />
           )}
         </Box>

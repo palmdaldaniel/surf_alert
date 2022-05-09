@@ -13,7 +13,7 @@ import useWaterTemp from "../../hooks/useWaterTemp";
 // helpers
 import { parseToUrl } from "../../helpers";
 import { calcNearest } from "../../helpers/CalcDistance";
-import { stations } from "../../helpers/stations";
+//import { stations } from "../../helpers/stations";
 
 // mui
 import Link from "@mui/material/Link";
@@ -21,7 +21,7 @@ import Link from "@mui/material/Link";
 // components
 import WindDirectionArrow from "../Utils/WindDirectionArrow";
 
-const LocationMarker = ({ currentPosition, onLocationPage }) => {
+const LocationMarker = ({ currentPosition, onLocationPage, stations }) => {
   const [position, setPosition] = useState(currentPosition);
   const [coordUrl, setCoordUrl] = useState(parseToUrl(currentPosition));
 
@@ -32,6 +32,7 @@ const LocationMarker = ({ currentPosition, onLocationPage }) => {
   useEffect(() => {
     if (position) {
       const result = calcNearest(stations, position);
+
       setStation(result.id);
     }
   }, [position]);

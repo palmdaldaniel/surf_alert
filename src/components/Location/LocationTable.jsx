@@ -1,10 +1,9 @@
 import WetherList from "./WetherList";
 
-import { stations } from "../../helpers/stations";
 import { useEffect, useState } from "react";
 import { calcNearest } from "../../helpers/CalcDistance";
 
-export default function BasicTable({ weatherData, locationData }) {
+export default function BasicTable({ weatherData, locationData, stations }) {
   const { coord } = weatherData;
 
   const [station, setStation] = useState(null);

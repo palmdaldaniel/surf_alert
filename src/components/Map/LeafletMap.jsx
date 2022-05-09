@@ -5,6 +5,7 @@ import { mapboxConfig } from "../../mapbox";
 import LocationMarker from "./LocationMarker";
 
 import "leaflet/dist/leaflet.css";
+import useStations from "../../hooks/useStations";
 
 const LeafletMap = ({ height, locationId, coords, onLocationPage }) => {
   const [currentPosition, setCurrentPosition] = useState(null);
@@ -18,6 +19,8 @@ const LeafletMap = ({ height, locationId, coords, onLocationPage }) => {
       });
     }
   }, []);
+
+  const stations = useStations();
 
   return (
     <Box
@@ -42,13 +45,16 @@ const LeafletMap = ({ height, locationId, coords, onLocationPage }) => {
             attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
             url={`https://api.mapbox.com/styles/v1/${mapboxConfig.username}/${mapboxConfig.styleId}/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxConfig.token}`}
           />
-          <LocationMarker
-            onLocationPage={onLocationPage}
-            currentPosition={{
-              lat: currentPosition[0],
-              lng: currentPosition[1],
-            }}
-          />
+          {stations.data && (
+            <LocationMarker
+              stations={stations.data}
+              onLocationPage={onLocationPage}
+              currentPosition={{
+                lat: currentPosition[0],
+                lng: currentPosition[1],
+              }}
+            />
+          )}
         </MapContainer>
       )}
     </Box>

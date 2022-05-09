@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
 import { getWaterTemp } from "../services/SMHI_API";
 
-const useLocationWeather = (stationId) => {
-  const waterTemp = useQuery(["watertemp", stationId], () =>
+const useWaterTemp = (stationId = null) => {
+  const temp = useQuery(["watertemp", stationId], () =>
     getWaterTemp(stationId)
   );
 
-  return waterTemp;
+  return temp;
 };
 
-export default useLocationWeather;
+export default useWaterTemp;

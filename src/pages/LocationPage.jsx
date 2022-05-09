@@ -79,86 +79,82 @@ const LocationPage = () => {
 
       {/* wait for data to be loaded */}
 
-      {weatherData.isLoading || forecast.isLoading ? (
-        <SkeletonPage />
-      ) : (
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            {!locationId && (
-              <Button
-                sx={{
-                  alignSelf: "flex-end",
-                  margin: "10px 0 ",
-                }}
-                variant="contained"
-                onClick={openDialog}
-              >
-                Save this location
-              </Button>
-            )}
-          </Box>
-
-          <Box
-            sx={{
-              minHeight: 112,
-            }}
-          >
-            {weatherData.data && locationQuery.data && (
-              <LocationTable
-                locationData={
-                  locationQuery.data.length === 1
-                    ? locationQuery.data
-                    : undefined
-                }
-                weatherData={weatherData.data}
-              />
-            )}
-          </Box>
-
-          {feedBack && (
-            <Alert
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          {!locationId && (
+            <Button
               sx={{
-                margin: "20px 0",
-                width: "100%",
+                alignSelf: "flex-end",
+                margin: "10px 0 ",
               }}
-              severity={feedBack.type}
+              variant="contained"
+              onClick={openDialog}
             >
-              {feedBack.msg}
-            </Alert>
+              Save this location
+            </Button>
           )}
-
-          <Box>
-            {img && img?.docs.length > 0 ? (
-              <SpotImage docs={img.docs} />
-            ) : (
-              <PlaceholderImage locationId={locationId} />
-            )}
-          </Box>
-
-          <Box
-            sx={{
-              display: { sm: "flex" },
-            }}
-          >
-            {coords && (
-              <LeafletMap
-                onLocationPage
-                coords={coords}
-                locationId={locationId}
-                height={{ height: "300px" }}
-              />
-            )}
-            {forecast.data && (
-              <WeatherChart forecastData={forecast.data.daily} />
-            )}
-          </Box>
         </Box>
-      )}
+
+        <Box
+          sx={{
+            minHeight: 112,
+          }}
+        >
+          {weatherData.data && locationQuery.data && (
+            <LocationTable
+              locationData={
+                locationQuery.data.length === 1 ? locationQuery.data : undefined
+              }
+              weatherData={weatherData.data}
+            />
+          )}
+        </Box>
+
+        {feedBack && (
+          <Alert
+            sx={{
+              margin: "20px 0",
+              width: "100%",
+            }}
+            severity={feedBack.type}
+          >
+            {feedBack.msg}
+          </Alert>
+        )}
+
+        <Box
+          sx={{
+            minHeight: "330px",
+          }}
+        >
+          {img && img?.docs.length > 0 ? (
+            <SpotImage docs={img.docs} />
+          ) : (
+            <PlaceholderImage locationId={locationId} />
+          )}
+        </Box>
+
+        <Box
+          sx={{
+            display: { sm: "flex" },
+          }}
+        >
+          {coords && (
+            <LeafletMap
+              onLocationPage
+              coords={coords}
+              locationId={locationId}
+              height={{ height: "300px" }}
+            />
+          )}
+          {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
+        </Box>
+      </Box>
 
       {weatherData.data && (
         <CustomDialog

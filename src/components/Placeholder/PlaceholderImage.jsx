@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
+
+// mui
 import CardMedia from "@mui/material/CardMedia";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+
+// components
 import UploadFileDialog from "../Dialog/UploadFileDialog.jsx";
+
+// hooks
 import useDialog from "../../hooks/useDialog.js";
 import useUploadFile from "../../hooks/useUploadFile.js";
 
@@ -36,6 +42,7 @@ const PlaceHolderImage = ({ locationId }) => {
           alt="placeholder image"
           image={"http://placehold.jp/700x200.png"}
         />
+
         {locationId && <FileUploadIcon fontSize="large" />}
       </div>
       <UploadFileDialog

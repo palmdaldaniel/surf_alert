@@ -105,7 +105,7 @@ const LocationPage = () => {
 
           <Box
             sx={{
-              minHeight: 138,
+              minHeight: 112,
             }}
           >
             {weatherData.data && locationQuery.data && (

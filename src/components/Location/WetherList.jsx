@@ -1,9 +1,19 @@
 import * as React from "react";
+
+// mui
+import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import Grid from "@mui/material/Grid";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import WindPowerIcon from "@mui/icons-material/WindPower";
+import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
+import ExploreIcon from "@mui/icons-material/Explore";
+import WavesIcon from "@mui/icons-material/Waves";
 
+// hooks
 import useWaterTemp from "../../hooks/useWaterTemp";
 
 import { parseTime } from "../../helpers";
@@ -11,8 +21,7 @@ import WindDirectionArrow from "../Utils/WindDirectionArrow";
 
 // row setup
 const xs = 6;
-const sm = 4;
-const md = 3;
+const sm = 3;
 
 export default function WetherList({ weatherData, stationId, locationName }) {
   const { name, sys, wind, main } = weatherData;
@@ -22,85 +31,51 @@ export default function WetherList({ weatherData, stationId, locationName }) {
   return (
     <List>
       <Grid container>
-        <Grid item xs={xs} sm={sm} md={md}>
-          <ListItem
-            sx={{
-              paddingBottom: 0,
-            }}
-          >
-            <ListItemText
-              primary="Location"
-              secondary={locationName ? locationName : name}
-            />
+        <Grid item xs={xs} sm={sm}>
+          <ListItem>
+            <LocationOnIcon sx={{ mr: 2 }} />
+            <ListItemText primary={locationName ? locationName : name} />
           </ListItem>
         </Grid>
-        <Grid item xs={xs} sm={sm} md={md}>
-          <ListItem
-            sx={{
-              paddingBottom: 0,
-            }}
-          >
-            <ListItemText
-              primary="Sunrise"
-              secondary={parseTime(sys.sunrise)}
-            />
+        <Grid item xs={xs} sm={sm}>
+          <ListItem>
+            <WbSunnyIcon sx={{ mr: 2 }} />
+            <ListItemText primary={parseTime(sys.sunrise)} />
           </ListItem>
         </Grid>
-        <Grid item xs={xs} sm={sm} md={md}>
-          <ListItem
-            sx={{
-              paddingBottom: 0,
-            }}
-          >
-            <ListItemText primary="Sunset" secondary={parseTime(sys.sunset)} />
+        <Grid item xs={xs} sm={sm}>
+          <ListItem>
+            <DarkModeIcon sx={{ mr: 2 }} />
+            <ListItemText primary={parseTime(sys.sunset)} />
           </ListItem>
         </Grid>
-        <Grid item xs={xs} sm={sm} md={md}>
-          <ListItem
-            sx={{
-              paddingBottom: 0,
-            }}
-          >
-            <ListItemText primary="WindSpeed" secondary={`${wind.speed} m/s`} />
+        <Grid item xs={xs} sm={sm}>
+          <ListItem>
+            <DeviceThermostatIcon sx={{ mr: 2 }} />
+            <ListItemText primary={`${main.temp}°C`} />
           </ListItem>
         </Grid>
-        <Grid item xs={xs} sm={sm} md={md}>
-          <ListItem
-            sx={{
-              paddingBottom: 0,
-            }}
-          >
-            <ListItemText
-              primary="Winddirection"
-              secondary={<WindDirectionArrow degree={wind.deg} />}
-            />
-          </ListItem>
-        </Grid>
-        <Grid item xs={xs} sm={sm} md={md}>
-          <ListItem
-            sx={{
-              paddingBottom: 0,
-            }}
-          >
-            <ListItemText
-              primary="Air Temperature"
-              secondary={`${main.temp}°C`}
-            />
-          </ListItem>
-        </Grid>
-        <Grid item xs={xs} sm={sm} md={md}>
+        <Grid item xs={xs} sm={sm}>
           {temp.data && (
-            <ListItem
-              sx={{
-                paddingBottom: 0,
-              }}
-            >
+            <ListItem>
+              <WavesIcon sx={{ mr: 2 }} />
               <ListItemText
-                primary="Water Temperature"
-                secondary={`${temp.data.parameter.key}${temp.data.parameter.unit}`}
+                primary={`${temp.data.parameter.key}${temp.data.parameter.unit}`}
               />
             </ListItem>
           )}
+        </Grid>
+        <Grid item xs={xs} sm={sm}>
+          <ListItem>
+            <WindPowerIcon sx={{ mr: 2 }} />
+            <ListItemText primary={`${wind.speed} m/s`} />
+          </ListItem>
+        </Grid>
+        <Grid item xs={xs} sm={sm}>
+          <ListItem>
+            <ExploreIcon sx={{ mr: 2 }} />
+            <WindDirectionArrow degree={wind.deg} />
+          </ListItem>
         </Grid>
       </Grid>
     </List>

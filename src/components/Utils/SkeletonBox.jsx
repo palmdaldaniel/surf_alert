@@ -1,14 +1,13 @@
 import React from "react";
 import Skeleton from "@mui/material/Skeleton";
 
-const SkeletonBox = ({ height, width }) => {
+const SkeletonBox = ({ height, width, animation }) => {
   return (
     <Skeleton
-      animation="wave"
+      animation={animation ?? "wave"}
       variant="rectangular"
       width={width ?? "100%"}
       height={height}
-      sx={{ margin: "10px 0" }}
     />
   );
 };

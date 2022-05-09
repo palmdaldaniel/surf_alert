@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 // mui
-import CardMedia from "@mui/material/CardMedia";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 // components
@@ -12,6 +11,7 @@ import useDialog from "../../hooks/useDialog.js";
 import useUploadFile from "../../hooks/useUploadFile.js";
 
 import { useQueryClient } from "react-query";
+import SkeletonBox from "../Utils/SkeletonBox.jsx";
 
 const PlaceHolderImage = ({ locationId }) => {
   const queryClient = useQueryClient();
@@ -33,15 +33,7 @@ const PlaceHolderImage = ({ locationId }) => {
         onClick={locationId && openDialog}
         className={locationId ? "placeholder-wrapper" : ""}
       >
-        <CardMedia
-          sx={{
-            width: "100%",
-            margin: "10px 0",
-          }}
-          component="img"
-          alt="placeholder image"
-          image={"http://placehold.jp/700x200.png"}
-        />
+        <SkeletonBox height={300} animation={false} />
 
         {locationId && <FileUploadIcon fontSize="large" />}
       </div>

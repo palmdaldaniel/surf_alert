@@ -50,7 +50,7 @@ const useLocation = (locationId = null) => {
     }
   );
 
-  const createLocation = async (locationValues = null) => {
+  const createLocation = async (locationValues = null, isOnboarding) => {
     if (!locationValues) return;
 
     const { coords, locationName, windDirection, windSpeed, locationId } =
@@ -74,7 +74,9 @@ const useLocation = (locationId = null) => {
       // when all is good and well
       console.log("doc created, good job 🔥");
 
-      navigate("/profile");
+      if (!isOnboarding) {
+        navigate("/profile");
+      }
     } catch (error) {
       console.log("error", error.message);
       setFeedBack({

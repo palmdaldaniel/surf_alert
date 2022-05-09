@@ -18,8 +18,6 @@ import useDoc from "../../hooks/useDoc";
 const UserInfo = ({ user }) => {
   const img = useDoc(null, user.uid);
 
-  console.log(img?.docs);
-
   return (
     <>
       {img?.docs === undefined ? (

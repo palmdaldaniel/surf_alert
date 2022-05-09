@@ -1,5 +1,6 @@
 import React from "react";
 import CardMedia from "@mui/material/CardMedia";
+import SkeletonBox from "../Utils/SkeletonBox";
 
 const CardImageWrapper = ({ data, finishedLoading }) => {
   const src = data[0]?.data();
@@ -16,15 +17,7 @@ const CardImageWrapper = ({ data, finishedLoading }) => {
       onLoad={() => finishedLoading(src)}
     />
   ) : (
-    <CardMedia
-      sx={{
-        width: "100%",
-        height: "200px",
-      }}
-      component="img"
-      alt="Placeholder"
-      image={"http://placehold.jp/300x170.png"}
-    />
+    <SkeletonBox animation={false} height={200} />
   );
 };
 

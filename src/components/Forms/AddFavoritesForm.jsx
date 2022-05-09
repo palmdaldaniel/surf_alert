@@ -64,11 +64,6 @@ const AddFavoritesForm = () => {
   const handleClick = (isCreating) => {
     const locations = isCreating ? checked : undefined;
 
-    if (!locations) {
-      navigate("/");
-      return;
-    }
-
     locations.forEach((location) => {
       const uuid = uuidv4(); // give an id
 
@@ -83,7 +78,7 @@ const AddFavoritesForm = () => {
         locationId: uuid,
       };
 
-      createLocation(locationValues);
+      createLocation(locationValues, true);
     });
     console.log("give me some favorites pls 🔥");
     navigate("/");

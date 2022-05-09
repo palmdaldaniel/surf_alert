@@ -91,16 +91,17 @@ const ResponsiveAppBar = () => {
 
           {/* Navigation for normal menu start */}
 
-          <Button
-            sx={{
-              display: { xs: "none", md: "block" },
-              my: 2,
-              color: "white",
-            }}
-          >
-            <Link to="/">Surf Alert</Link>
-          </Button>
-
+          <Link to="/">
+            <Button
+              sx={{
+                display: { xs: "none", md: "block" },
+                my: 2,
+                color: "white",
+              }}
+            >
+              Surf Alert
+            </Button>
+          </Link>
           <Box
             sx={{
               flexGrow: 1,
@@ -109,22 +110,26 @@ const ResponsiveAppBar = () => {
             }}
           >
             {user && (
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                <Link to="/locations">Locations</Link>
-              </Button>
+              <Link to="/locations">
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Locations
+                </Button>
+              </Link>
             )}
 
             {user && (
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                <Link to="/profile">Profile</Link>
-              </Button>
+              <Link to="/profile">
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Profile
+                </Button>
+              </Link>
             )}
 
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
-              <Link to={user ? "/logout" : "login"}>
+            <Link to={user ? "/logout" : "login"}>
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
                 {user ? "Logout" : "Login"}
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Box>
           {/* Navigation for normal menu end */}
         </Toolbar>

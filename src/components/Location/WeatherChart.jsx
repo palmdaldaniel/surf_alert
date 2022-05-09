@@ -46,6 +46,7 @@ const WeatherChart = ({ forecastData }) => {
         height: "300px",
         width: { xs: "300", sm: "500px" },
         margin: "10px 0",
+        marginLeft: { xs: "-40px", sm: 0 },
       }}
     >
       {chartData && (

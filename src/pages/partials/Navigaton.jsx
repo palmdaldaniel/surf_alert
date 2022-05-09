@@ -60,36 +60,26 @@ const ResponsiveAppBar = () => {
               open={isOpen}
               onClose={toggleDrawer}
             >
-              <MenuItem>
-                <Typography as={Link} to="/" textAlign="center">
-                  Surf Alert
-                </Typography>
+              <MenuItem as={Link} to="/">
+                <Typography textAlign="center">Surf Alert</Typography>
               </MenuItem>
               {user && (
                 <Box onClick={toggleDrawer} sx={{ width: 250 }}>
-                  <MenuItem>
-                    <Typography as={Link} to="/locations" textAlign="center">
-                      Locations
-                    </Typography>
+                  <MenuItem as={Link} to="/locations">
+                    <Typography textAlign="center">Locations</Typography>
                   </MenuItem>
                 </Box>
               )}
               {user && (
                 <Box onClick={toggleDrawer} sx={{ width: 250 }}>
-                  <MenuItem>
-                    <Typography as={Link} to="/profile" textAlign="center">
-                      Profile
-                    </Typography>
+                  <MenuItem as={Link} to="/profile">
+                    <Typography textAlign="center">Profile</Typography>
                   </MenuItem>
                 </Box>
               )}
               <Box onClick={toggleDrawer} sx={{ width: 250 }}>
-                <MenuItem>
-                  <Typography
-                    as={Link}
-                    to={user ? "/logout" : "login"}
-                    textAlign="center"
-                  >
+                <MenuItem as={Link} to={user ? "/logout" : "login"}>
+                  <Typography textAlign="center">
                     {user ? "Logout" : "Login"}
                   </Typography>
                 </MenuItem>

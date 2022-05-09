@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // mui
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -81,34 +82,40 @@ const FavoritesCard = (props) => {
           flexDirection: "column",
           position: "relative",
           maxWidth: 345,
-          justifyContent: "space-between",
-          backgroundColor: itsOn && "#d1ffc659",
         }}
       >
         {img && (
           <CardImageWrapper data={img.docs} finishedLoading={finishedLoading} />
         )}
 
-        {weatherData.data && (
-          <WeatherContent
-            data={weatherData.data}
-            locationName={locationName}
-            preferedWindDirection={prefferedWindDirection}
-            preferedWindSpeed={prefferedWindSpeed}
-            setItsOn={setItsOn}
-            itsOn={itsOn}
-          />
-        )}
-        <Button
-          variant="contained"
-          onClick={handleClick}
+        <Box
           sx={{
-            margin: "5px",
+            backgroundColor: itsOn && "#d1ffc659",
+            display: "flex",
+            flexDirection: "column",
           }}
-          size="small"
         >
-          Go To Spot
-        </Button>
+          {weatherData.data && (
+            <WeatherContent
+              data={weatherData.data}
+              locationName={locationName}
+              preferedWindDirection={prefferedWindDirection}
+              preferedWindSpeed={prefferedWindSpeed}
+              setItsOn={setItsOn}
+              itsOn={itsOn}
+            />
+          )}
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            sx={{
+              margin: "10px",
+            }}
+            size="small"
+          >
+            Go To Spot
+          </Button>
+        </Box>
 
         <Button
           sx={{

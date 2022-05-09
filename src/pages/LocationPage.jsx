@@ -30,6 +30,7 @@ const LocationPage = () => {
   const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if not saved as favorite
 
   const { createLocation, locationQuery, feedBack } = useLocation(locationId);
+
   const stations = useStations();
   const { isOpen, openDialog, closeDialog } = useDialog();
 

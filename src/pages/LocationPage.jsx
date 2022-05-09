@@ -71,6 +71,9 @@ const LocationPage = () => {
   // get todays weather
   const weatherData = useCoordinates(coords);
 
+  console.log({ locationQuery });
+  console.log({ weatherData });
+
   // get forecast for the next 7 days
   const forecast = useForecast(coords);
 
@@ -110,7 +113,9 @@ const LocationPage = () => {
           {weatherData.data && locationQuery.data && stations.data && (
             <LocationTable
               locationData={
-                locationQuery.data.length === 1 ? locationQuery.data : undefined
+                locationQuery.data.length === 1 && locationId
+                  ? locationQuery.data
+                  : undefined
               }
               weatherData={weatherData.data}
               stations={stations.data}

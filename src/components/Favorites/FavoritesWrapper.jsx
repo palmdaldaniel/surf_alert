@@ -13,6 +13,22 @@ import DeleteDialog from "../Dialog/DeleteDialog";
 // hooks
 import useLocation from "../../hooks/useLocation";
 import useCollection from "../../hooks/useCollection";
+import SkeletonBox from "../Utils/SkeletonBox";
+
+const skeletonItems = [
+  {
+    height: 400,
+    width: 345,
+  },
+  {
+    height: 400,
+    width: 345,
+  },
+  {
+    height: 400,
+    width: 345,
+  },
+];
 
 const FavoritesWrapper = () => {
   const [locationToBeDeleted, setLocationToBeDelete] = useState();
@@ -69,9 +85,24 @@ const FavoritesWrapper = () => {
           margin: "20px 0",
         }}
       >
+        {favorites.locationQuery.data &&
+          favorites.locationQuery.data.length < 1 && (
+            <Alert sx={{ margin: "50px auto" }} severity="info">
+              You have no favorites yet. Go to locations in the menu to set
+              some!
+            </Alert>
+          )}
+
         <Grid container spacing={2}>
+          {favorites.locationQuery.isLoading &&
+            skeletonItems.map((item, i) => (
+              <Grid key={i} item xs={12} sm={6} md={4}>
+                <SkeletonBox height={item.height} width={item.width} />
+              </Grid>
+            ))}
+
           {favorites.locationQuery.data &&
-          favorites.locationQuery.data.length > 0 ? (
+            favorites.locationQuery.data.length > 0 &&
             favorites.locationQuery.data.map((item, i) => (
               <Grid key={item._id} item xs={12} sm={6} md={4}>
                 <FavoritesCard
@@ -80,13 +111,7 @@ const FavoritesWrapper = () => {
                   {...item}
                 />
               </Grid>
-            ))
-          ) : (
-            <Alert sx={{ margin: "50px auto" }} severity="info">
-              You have no favorites yet. Go to locations in the menu to set
-              some!
-            </Alert>
-          )}
+            ))}
         </Grid>
       </Box>
       <DeleteDialog

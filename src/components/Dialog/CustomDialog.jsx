@@ -31,6 +31,7 @@ const CustomDialog = ({
   );
 
   const [locationName, setLocationName] = useState(spotName ? spotName : "");
+
   const [locationId] = useState(
     currentLocationId ? currentLocationId : uuidv4()
   );

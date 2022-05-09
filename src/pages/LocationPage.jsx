@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useCoordinates from "../hooks/useCoordinates";
 
-import LocationTable from "../components/Location/LocationTable";
-import Container from "@mui/material/Container";
-import WeatherChart from "../components/Location/WeatherChart";
-import { parseToCoordinates } from "../helpers";
-import useForecast from "../hooks/useForecast";
-import useLocation from "../hooks/useLocation";
+// mui
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Alert from "@mui/material/Alert";
 
-import CustomDialog from "../components/Dialog/CustomDialog";
-
+// hooks
+import useCoordinates from "../hooks/useCoordinates";
+import useForecast from "../hooks/useForecast";
+import useLocation from "../hooks/useLocation";
 import useDoc from "../hooks/useDoc";
 import useDialog from "../hooks/useDialog";
 
-import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
+// components
+import CustomDialog from "../components/Dialog/CustomDialog";
 import LeafletMap from "../components/Map/LeafletMap";
-
-import Alert from "@mui/material/Alert";
+import LocationTable from "../components/Location/LocationTable";
+import PlaceholderImage from "../components/Placeholder/PlaceholderImage";
 import SpotImage from "../components/Image/SpotImage";
+import WeatherChart from "../components/Location/WeatherChart";
+
+// helpers
+import { parseToCoordinates } from "../helpers";
 
 const LocationPage = () => {
-  const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if user has this location as a saved favorite
+  const { lat, lon: lng, locationId } = useParams(); // locationId will be undefined if not saved as favorite
 
   const { createLocation, locationQuery, feedBack } = useLocation(locationId);
   const { isOpen, openDialog, closeDialog } = useDialog();
@@ -41,7 +44,6 @@ const LocationPage = () => {
   }, []);
 
   // handles users data
-
   const handleClose = async (values, isCancelled) => {
     if (isCancelled) {
       closeDialog();
@@ -72,7 +74,7 @@ const LocationPage = () => {
   return (
     <Container>
       {weatherData.isError && <p>No weather data for you :(</p>}
-      {weatherData.isLoading && <p>Loading weatherData</p>}
+      {weatherData.isLoading && <p>Loading weather data</p>}
       <Box
         sx={{
           display: "flex",
@@ -139,7 +141,14 @@ const LocationPage = () => {
         {forecast.data && <WeatherChart forecastData={forecast.data.daily} />}
       </Box>
 
-      <CustomDialog text="Save" open={isOpen} handleClose={handleClose} />
+      {weatherData.data && (
+        <CustomDialog
+          text="Save"
+          spotName={weatherData.data.name}
+          open={isOpen}
+          handleClose={handleClose}
+        />
+      )}
     </Container>
   );
 };

@@ -7,10 +7,12 @@ export const getWaterTemp = async (stationId = null) => {
   if (!stationId) return;
 
   const { data } = await api.get(
-    `version/latest/parameter/5/station/${stationId}/period/latest-hour/data.json`
+    `version/latest/parameter/5/station/${stationId}/period/latest-day/data.json`
   );
 
-  return data;
+  const tempValue = data.value[0].value;
+  const tempUnit = data.parameter.unit;
+  return { tempValue, tempUnit };
 };
 
 export const getAllStations = async () => {

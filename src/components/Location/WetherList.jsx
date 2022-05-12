@@ -60,7 +60,7 @@ export default function WetherList({ weatherData, stationId, locationName }) {
             <ListItem>
               <WavesIcon sx={{ mr: 2 }} />
               <ListItemText
-                primary={`${temp.data.value[0].value}${temp.data.parameter.unit}`}
+                primary={`${temp.data.tempValue}${temp.data.tempUnit}`}
               />
             </ListItem>
           )}

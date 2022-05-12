@@ -51,6 +51,7 @@ const LocationMarker = ({ currentPosition, onLocationPage, stations }) => {
   });
 
   const showWeatherData = (geo, water) => {
+    const { tempValue, tempUnit } = water;
     let content;
 
     if (geo.sys.country !== "SE")
@@ -70,8 +71,8 @@ const LocationMarker = ({ currentPosition, onLocationPage, stations }) => {
           <WindDirectionArrow degree={geo.wind.deg} />
         </div>
         <p>
-          Sea temperature: {water.value[0].value}
-          {water.parameter.unit}
+          Sea temperature: {tempValue}
+          {tempUnit}
         </p>
         {coordUrl && (
           <Link component={RouterLink} to={`${coordUrl.lng}/${coordUrl.lat}`}>
@@ -97,6 +98,7 @@ const LocationMarker = ({ currentPosition, onLocationPage, stations }) => {
     >
       <Popup>
         {(weatherData.isLoading || temp.isLoading) && <p>Loading data</p>}
+        {weatherData.isError || (temp.isError && <p>No info available</p>)}
         {weatherData.data &&
           temp.data &&
           showWeatherData(weatherData.data, temp.data)}
